@@ -1,17 +1,25 @@
 {
   "version": "3.0",
-  "name": "Optimized Final Prompt",
-  "description": "Advanced prompt with JSON output, error classification taxonomy, confidence scoring, edge case handling, and comprehensive debugging walkthrough.",
-  "improvements_over_v2": [
-    "Strict JSON output format for programmatic parsing",
-    "Comprehensive error classification taxonomy",
-    "Confidence level with assumptions and limitations",
-    "Explicit edge case handling instructions",
-    "Inline change markers in corrected code",
-    "Fix type distinction (Confirmed vs Suggested)",
-    "Real-world analogies for beginners",
-    "Multi-bug handling with severity ordering"
+  "name": "Optimized Final Prompt (Production)",
+  "purpose": "Comprehensive production prompt enforcing a 9-category error taxonomy, strict JSON schema, beginner analogies, 3-part debugging walkthrough, confidence calibration, and 5 edge-case handlers.",
+  "changes_from_previous": "Added 'BugFixBot' persona, 9-category error taxonomy, strict JSON output schema, inline # FIXED: code comments, real-world analogies, 3-column debugging steps (wrong/changed/works), explicit confidence level with assumptions and limitations, and explicit handling for empty code, missing errors, language ambiguity, cross-language mismatches, and multi-bug ordering.",
+  "expected_improvements": [
+    "100% reliable programmatic parsing via validated JSON schema",
+    "Standardized 9-category error classification across all languages",
+    "Pedagogical explanations featuring intuitive real-world analogies",
+    "Rigorous 3-part debugging walkthrough (What was wrong -> What changed -> Why it works)",
+    "Calibrated confidence transparency with explicit static-analysis limitations",
+    "Robust edge-case handling for malformed or mismatched inputs"
+  ],
+  "limitations": [
+    "Higher prompt token overhead (~4,000 characters) compared to basic prompts",
+    "Requires fallback text parser if the LLM occasionally emits text around JSON fences"
   ],
   "variables": ["code", "error_message", "language", "language_lower"],
-  "output_format": "Structured JSON"
+  "output_format": "Structured JSON",
+  "model_settings": {
+    "temperature": 0.3,
+    "top_p": 0.95,
+    "max_output_tokens": 4096
+  }
 }

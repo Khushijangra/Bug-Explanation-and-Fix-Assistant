@@ -1,0 +1,301 @@
+{
+  "timestamp": "2026-11-18 21:14:30",
+  "unit_tests": {
+    "total": 10,
+    "passed": 10,
+    "failed": 0,
+    "results": [
+      {
+        "name": "AppConfig Loading",
+        "status": "PASS"
+      },
+      {
+        "name": "LangDetect (Python)",
+        "status": "PASS"
+      },
+      {
+        "name": "LangDetect (JavaScript)",
+        "status": "PASS"
+      },
+      {
+        "name": "LangDetect (Java)",
+        "status": "PASS"
+      },
+      {
+        "name": "LangDetect (C++)",
+        "status": "PASS"
+      },
+      {
+        "name": "LangDetect (C)",
+        "status": "PASS"
+      },
+      {
+        "name": "LangDetect (Unknown)",
+        "status": "PASS"
+      },
+      {
+        "name": "PromptManager Templates & Info",
+        "status": "PASS"
+      },
+      {
+        "name": "ResponseFormatter JSON & Dual-Access",
+        "status": "PASS"
+      },
+      {
+        "name": "Isolated AST Syntax Validator",
+        "status": "PASS"
+      }
+    ]
+  },
+  "integration_demo_tests": {
+    "total": 17,
+    "passed": 17,
+    "failed": 0,
+    "pass_rate": "100.0%",
+    "results": [
+      {
+        "test_id": "TC001",
+        "test_type": "Normal",
+        "language": "Python",
+        "description": "Missing closing parenthesis in print statement",
+        "status": "PASS",
+        "duration_seconds": 0.0001,
+        "identified_error_type": "SyntaxError",
+        "severity": "Critical",
+        "has_corrected_code": true,
+        "confidence_level": "High",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC002",
+        "test_type": "Normal",
+        "language": "Python",
+        "description": "Division by zero in arithmetic operation",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "ZeroDivisionError",
+        "severity": "Critical",
+        "has_corrected_code": true,
+        "confidence_level": "High",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC003",
+        "test_type": "Normal",
+        "language": "JavaScript",
+        "description": "Variable access in Temporal Dead Zone (let hoisting)",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "ReferenceError",
+        "severity": "Critical",
+        "has_corrected_code": true,
+        "confidence_level": "High",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC004",
+        "test_type": "Normal",
+        "language": "Java",
+        "description": "Dereferencing null reference (NullPointerException)",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "NullPointerException",
+        "severity": "Critical",
+        "has_corrected_code": true,
+        "confidence_level": "High",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC005",
+        "test_type": "Normal",
+        "language": "C++",
+        "description": "Missing semicolon after stream statement",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "CompilationError",
+        "severity": "Critical",
+        "has_corrected_code": true,
+        "confidence_level": "High",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC006",
+        "test_type": "Normal",
+        "language": "C",
+        "description": "Array index out of bounds leading to segmentation fault",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "RuntimeError",
+        "severity": "Critical",
+        "has_corrected_code": true,
+        "confidence_level": "High",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC007",
+        "test_type": "Normal",
+        "language": "Python",
+        "description": "Logical off-by-one error in list iteration range",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "LogicalError",
+        "severity": "Major",
+        "has_corrected_code": true,
+        "confidence_level": "High",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC008",
+        "test_type": "Normal",
+        "language": "JavaScript",
+        "description": "Variable used without prior declaration",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "ReferenceError",
+        "severity": "Critical",
+        "has_corrected_code": true,
+        "confidence_level": "High",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC009",
+        "test_type": "Edge",
+        "language": "Python",
+        "description": "Empty source code input string",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "InvalidInput",
+        "severity": "Warning",
+        "has_corrected_code": false,
+        "confidence_level": "High",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC010",
+        "test_type": "Edge",
+        "language": "Python",
+        "description": "Missing error message with type mismatch in code",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "TypeError",
+        "severity": "Major",
+        "has_corrected_code": true,
+        "confidence_level": "High",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC011",
+        "test_type": "Edge",
+        "language": "Auto-Detect",
+        "description": "Syntactically ambiguous code lacking main function",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "CompilationError",
+        "severity": "Critical",
+        "has_corrected_code": true,
+        "confidence_level": "Medium",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC012",
+        "test_type": "Edge",
+        "language": "Python",
+        "description": "Very long multi-line source code snippet",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "SyntaxError",
+        "severity": "Major",
+        "has_corrected_code": true,
+        "confidence_level": "High",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC013",
+        "test_type": "Edge",
+        "language": "Python",
+        "description": "Typographic Unicode smart quotes pasted into code",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "SyntaxError",
+        "severity": "Major",
+        "has_corrected_code": true,
+        "confidence_level": "High",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC014",
+        "test_type": "Invalid",
+        "language": "Python",
+        "description": "Misleading cross-language error log (Java error on valid Python code)",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "InputDiscrepancyWarning",
+        "severity": "Warning",
+        "has_corrected_code": true,
+        "confidence_level": "High",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC015",
+        "test_type": "Invalid",
+        "language": "Rust",
+        "description": "Unsupported programming language (Rust)",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "UnsupportedLanguage",
+        "severity": "Warning",
+        "has_corrected_code": true,
+        "confidence_level": "Medium",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC016",
+        "test_type": "Invalid",
+        "language": "Python",
+        "description": "Invalid non-textual input representation",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "InvalidInput",
+        "severity": "Warning",
+        "has_corrected_code": false,
+        "confidence_level": "High",
+        "failure_reasons": [],
+        "mode": "demo"
+      },
+      {
+        "test_id": "TC017",
+        "test_type": "Invalid",
+        "language": "Python",
+        "description": "Malformed model output recovered via secondary markdown parser",
+        "status": "PASS",
+        "duration_seconds": 0.0,
+        "identified_error_type": "ParserFallback",
+        "severity": "Minor",
+        "has_corrected_code": true,
+        "confidence_level": "Medium",
+        "failure_reasons": [],
+        "mode": "demo"
+      }
+    ]
+  },
+  "live_ai_verification": {
+    "status": "NOT RUN",
+    "reason": "API key not configured or APP_MODE=demo. Preserving academic honesty without fabricating live API results.",
+    "tested_online": false
+  }
+}

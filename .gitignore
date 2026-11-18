@@ -31,8 +31,9 @@ Thumbs.db
 # Streamlit
 .streamlit/secrets.toml
 
-# Test outputs
-test-data/test_results.json
+# Temporary outputs
+temp/
+*.tmp
 
 # Logs
 *.log
