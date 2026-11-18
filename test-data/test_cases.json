@@ -1,0 +1,158 @@
+[
+  {
+    "test_id": "TC001",
+    "test_type": "Normal",
+    "language": "Python",
+    "description": "Missing closing parenthesis in print statement",
+    "code": "def greet():\n    print(\"Hello World\"\n\ngreet()",
+    "error_message": "SyntaxError: unexpected EOF while parsing",
+    "expected_output": {
+      "error_type": "SyntaxError",
+      "should_identify": "Missing closing parenthesis",
+      "should_fix": true
+    }
+  },
+  {
+    "test_id": "TC002",
+    "test_type": "Normal",
+    "language": "Python",
+    "description": "Division by zero error",
+    "code": "def divide(a, b):\n    return a / b\n\nresult = divide(10, 0)\nprint(result)",
+    "error_message": "ZeroDivisionError: division by zero",
+    "expected_output": {
+      "error_type": "RuntimeError or ZeroDivisionError",
+      "should_identify": "Division by zero without check",
+      "should_fix": true
+    }
+  },
+  {
+    "test_id": "TC003",
+    "test_type": "Normal",
+    "language": "JavaScript",
+    "description": "Variable used before declaration (TDZ)",
+    "code": "console.log(result);\nlet result = 42;",
+    "error_message": "ReferenceError: Cannot access 'result' before initialization",
+    "expected_output": {
+      "error_type": "ReferenceError",
+      "should_identify": "Temporal Dead Zone violation",
+      "should_fix": true
+    }
+  },
+  {
+    "test_id": "TC004",
+    "test_type": "Normal",
+    "language": "Java",
+    "description": "NullPointerException",
+    "code": "public class Main {\n    public static void main(String[] args) {\n        String name = null;\n        System.out.println(name.length());\n    }\n}",
+    "error_message": "Exception in thread \"main\" java.lang.NullPointerException",
+    "expected_output": {
+      "error_type": "NullPointerException or RuntimeError",
+      "should_identify": "Calling method on null reference",
+      "should_fix": true
+    }
+  },
+  {
+    "test_id": "TC005",
+    "test_type": "Normal",
+    "language": "C++",
+    "description": "Missing semicolon after cout",
+    "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Hello World\" << endl\n    return 0;\n}",
+    "error_message": "error: expected ';' before 'return'",
+    "expected_output": {
+      "error_type": "SyntaxError or CompilationError",
+      "should_identify": "Missing semicolon after cout statement",
+      "should_fix": true
+    }
+  },
+  {
+    "test_id": "TC006",
+    "test_type": "Normal",
+    "language": "C",
+    "description": "Array index out of bounds",
+    "code": "#include <stdio.h>\n\nint main() {\n    int arr[5] = {1, 2, 3, 4, 5};\n    printf(\"%d\\n\", arr[10]);\n    return 0;\n}",
+    "error_message": "Segmentation fault (core dumped)",
+    "expected_output": {
+      "error_type": "RuntimeError or IndexError",
+      "should_identify": "Array index out of bounds",
+      "should_fix": true
+    }
+  },
+  {
+    "test_id": "TC007",
+    "test_type": "Normal",
+    "language": "Python",
+    "description": "Logical error - off by one in loop",
+    "code": "def sum_list(numbers):\n    total = 0\n    for i in range(1, len(numbers)):\n        total += numbers[i]\n    return total\n\nprint(sum_list([1, 2, 3, 4, 5]))",
+    "error_message": "Expected output: 15, Got: 14",
+    "expected_output": {
+      "error_type": "LogicalError",
+      "should_identify": "Off-by-one error - range starts at 1 instead of 0",
+      "should_fix": true
+    }
+  },
+  {
+    "test_id": "TC008",
+    "test_type": "Edge",
+    "language": "Python",
+    "description": "Empty source code input",
+    "code": "",
+    "error_message": "SyntaxError: unexpected EOF while parsing",
+    "expected_output": {
+      "error_type": "InvalidInput",
+      "should_identify": "Empty code provided",
+      "should_fix": false
+    }
+  },
+  {
+    "test_id": "TC009",
+    "test_type": "Edge",
+    "language": "Python",
+    "description": "Missing error message",
+    "code": "def add(a, b):\n    return a + b\n\nresult = add(5, '3')\nprint(result)",
+    "error_message": "",
+    "expected_output": {
+      "error_type": "Should still attempt analysis",
+      "should_identify": "Type mismatch in addition",
+      "should_fix": true
+    }
+  },
+  {
+    "test_id": "TC010",
+    "test_type": "Edge",
+    "language": "Auto-Detect",
+    "description": "Ambiguous language detection",
+    "code": "// This could be C, C++, Java, or JavaScript\nint x = 5;\nint y = 10;\nint z = x + y;",
+    "error_message": "undefined reference to 'main'",
+    "expected_output": {
+      "error_type": "Should detect language and analyze",
+      "should_identify": "Missing main function or entry point",
+      "should_fix": true
+    }
+  },
+  {
+    "test_id": "TC011",
+    "test_type": "Invalid",
+    "language": "Python",
+    "description": "Misleading error message that doesn't match code",
+    "code": "print('Hello World')",
+    "error_message": "NullPointerException in thread main",
+    "expected_output": {
+      "error_type": "Should note discrepancy",
+      "should_identify": "Error message doesn't match the code or language",
+      "should_fix": false
+    }
+  },
+  {
+    "test_id": "TC012",
+    "test_type": "Invalid",
+    "language": "Rust",
+    "description": "Unsupported programming language",
+    "code": "fn main() {\n    println!(\"Hello, world!\");\n}",
+    "error_message": "error[E0308]: mismatched types",
+    "expected_output": {
+      "error_type": "Should handle gracefully",
+      "should_identify": "Unsupported or unrecognized language",
+      "should_fix": false
+    }
+  }
+]

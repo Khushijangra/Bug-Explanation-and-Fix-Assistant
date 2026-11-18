@@ -1,0 +1,25 @@
+graph TD
+    User["User Browser"] --> UI["Streamlit Frontend (app.py)"]
+    
+    subgraph Frontend ["Presentation Layer"]
+        UI --> CodeIn["Code Input"]
+        UI --> ErrIn["Error Input"]
+        UI --> LangSelect["Language Selector"]
+        UI --> ResultsView["Results Dashboard (Tabs A-G)"]
+        UI --> CompView["Prompt Comparison View"]
+    end
+    
+    subgraph Modules ["Application Core Modules"]
+        LangSelect --> LangDet["modules/language_detector.py<br/>(Heuristic Keyword & Pattern Scorer)"]
+        UI --> Analyzer["modules/bug_analyzer.py<br/>(Core Orchestration Engine)"]
+        Analyzer --> PM["modules/prompt_manager.py<br/>(V1, V2, V3 Lifecycle Manager)"]
+        Analyzer --> Formatter["modules/response_formatter.py<br/>(JSON Parser & UI Normalizer)"]
+    end
+    
+    subgraph Backends ["Inference Backends"]
+        Analyzer -->|APP_MODE=ai| Gemini["Google Gemini API<br/>(gemini-2.0-flash)"]
+        Analyzer -->|APP_MODE=demo| DemoEngine["Deterministic Demo Engine<br/>(12 Calibrated Cases)"]
+    end
+    
+    Formatter --> ResultsView
+    Formatter --> CompView

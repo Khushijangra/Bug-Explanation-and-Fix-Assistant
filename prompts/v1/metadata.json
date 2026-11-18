@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "name": "Basic Prompt",
+  "description": "Simple prompt that receives code and error, identifies the issue, and suggests a fix.",
+  "limitations": [
+    "No structured output format",
+    "No role-based instructions",
+    "No error classification",
+    "No confidence assessment",
+    "May produce inconsistent output formats",
+    "No edge case handling",
+    "No step-by-step debugging guidance"
+  ],
+  "variables": ["code", "error_message", "language"],
+  "output_format": "Free-form text"
+}

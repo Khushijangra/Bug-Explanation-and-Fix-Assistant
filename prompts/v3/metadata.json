@@ -1,0 +1,17 @@
+{
+  "version": "3.0",
+  "name": "Optimized Final Prompt",
+  "description": "Advanced prompt with JSON output, error classification taxonomy, confidence scoring, edge case handling, and comprehensive debugging walkthrough.",
+  "improvements_over_v2": [
+    "Strict JSON output format for programmatic parsing",
+    "Comprehensive error classification taxonomy",
+    "Confidence level with assumptions and limitations",
+    "Explicit edge case handling instructions",
+    "Inline change markers in corrected code",
+    "Fix type distinction (Confirmed vs Suggested)",
+    "Real-world analogies for beginners",
+    "Multi-bug handling with severity ordering"
+  ],
+  "variables": ["code", "error_message", "language", "language_lower"],
+  "output_format": "Structured JSON"
+}

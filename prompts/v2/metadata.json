@@ -1,0 +1,23 @@
+{
+  "version": "2.0",
+  "name": "Structured Prompt",
+  "description": "Improved prompt with role instructions, structured sections, and beginner-friendly language requirements.",
+  "improvements_over_v1": [
+    "Added expert role definition",
+    "Added programming language context",
+    "Structured output with 6 clear sections",
+    "Required beginner-friendly explanations",
+    "Added severity assessment",
+    "Added prevention tips",
+    "Added uncertainty acknowledgment"
+  ],
+  "remaining_issues": [
+    "Output is text-based, harder to parse programmatically",
+    "No explicit JSON schema for validation",
+    "No error classification taxonomy",
+    "No confidence scoring",
+    "Limited edge case handling"
+  ],
+  "variables": ["code", "error_message", "language"],
+  "output_format": "Structured markdown text"
+}

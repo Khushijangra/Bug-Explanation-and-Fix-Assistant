@@ -1,0 +1,14 @@
+You are a programming assistant. Given the following code and error message, identify the bug, suggest a fix, and explain the issue.
+
+Code:
+{code}
+
+Error Message:
+{error_message}
+
+Programming Language: {language}
+
+Please provide:
+1. What the error is
+2. How to fix it
+3. A brief explanation

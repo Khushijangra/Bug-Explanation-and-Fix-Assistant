@@ -1,0 +1,20 @@
+graph LR
+    Input["Input: Code + Error Traceback"] --> LangDetect["Language Detection & Validation"]
+    LangDetect --> PromptSelect["Prompt Template Selection<br/>(V1, V2, or V3/Final)"]
+    PromptSelect --> Render["Template Variable Interpolation<br/>({code}, {error_message}, {language})"]
+    Render --> BackendCheck{"Backend Mode?"}
+    
+    BackendCheck -->|AI Mode| Gemini["Google Gemini API<br/>(gemini-2.0-flash, temp=0.3)"]
+    BackendCheck -->|Demo Mode| DemoEngine["Deterministic Verification Engine<br/>(Zero-Hallucination Fallback)"]
+    
+    Gemini --> Deserializer["JSON Validator & Markdown Extractor"]
+    DemoEngine --> Deserializer
+    
+    Deserializer --> Normalizer["UI Field Normalizer"]
+    Normalizer --> OutA["A. Error Identification"]
+    Normalizer --> OutB["B. Root Cause"]
+    Normalizer --> OutC["C. Corrected Code with Fix Markers"]
+    Normalizer --> OutD["D. Simple Explanation with Analogy"]
+    Normalizer --> OutE["E. Step-by-Step 3-Part Debugging"]
+    Normalizer --> OutF["F. Prevention Tips"]
+    Normalizer --> OutG["G. Confidence & Limitations"]
