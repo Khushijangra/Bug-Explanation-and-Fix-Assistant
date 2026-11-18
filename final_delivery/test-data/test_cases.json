@@ -1,0 +1,235 @@
+[
+  {
+    "test_id": "TC001",
+    "test_type": "Normal",
+    "language": "Python",
+    "description": "Missing closing parenthesis in print statement",
+    "code": "def greet():\n    print(\"Hello World\"\n\ngreet()",
+    "error_message": "SyntaxError: unexpected EOF while parsing",
+    "expected_output": {
+      "error_type": "SyntaxError",
+      "should_identify": "Missing closing parenthesis",
+      "should_fix": true,
+      "fix_contains": "print(\"Hello World\")"
+    }
+  },
+  {
+    "test_id": "TC002",
+    "test_type": "Normal",
+    "language": "Python",
+    "description": "Division by zero in arithmetic operation",
+    "code": "def divide(a, b):\n    return a / b\n\nresult = divide(10, 0)\nprint(result)",
+    "error_message": "ZeroDivisionError: division by zero",
+    "expected_output": {
+      "error_type": "ZeroDivisionError",
+      "should_identify": "Division by zero without guard",
+      "should_fix": true,
+      "fix_contains": "b == 0"
+    }
+  },
+  {
+    "test_id": "TC003",
+    "test_type": "Normal",
+    "language": "JavaScript",
+    "description": "Variable access in Temporal Dead Zone (let hoisting)",
+    "code": "console.log(result);\nlet result = 42;",
+    "error_message": "ReferenceError: Cannot access 'result' before initialization",
+    "expected_output": {
+      "error_type": "ReferenceError",
+      "should_identify": "Temporal Dead Zone violation",
+      "should_fix": true,
+      "fix_contains": "let result = 42;"
+    }
+  },
+  {
+    "test_id": "TC004",
+    "test_type": "Normal",
+    "language": "Java",
+    "description": "Dereferencing null reference (NullPointerException)",
+    "code": "public class Main {\n    public static void main(String[] args) {\n        String name = null;\n        System.out.println(name.length());\n    }\n}",
+    "error_message": "Exception in thread \"main\" java.lang.NullPointerException",
+    "expected_output": {
+      "error_type": "NullPointerException",
+      "should_identify": "Calling method on null reference",
+      "should_fix": true,
+      "fix_contains": "null"
+    }
+  },
+  {
+    "test_id": "TC005",
+    "test_type": "Normal",
+    "language": "C++",
+    "description": "Missing semicolon after stream statement",
+    "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Hello World\" << endl\n    return 0;\n}",
+    "error_message": "error: expected ';' before 'return'",
+    "expected_output": {
+      "error_type": "CompilationError",
+      "should_identify": "Missing semicolon after cout statement",
+      "should_fix": true,
+      "fix_contains": ";"
+    }
+  },
+  {
+    "test_id": "TC006",
+    "test_type": "Normal",
+    "language": "C",
+    "description": "Array index out of bounds leading to segmentation fault",
+    "code": "#include <stdio.h>\n\nint main() {\n    int arr[5] = {1, 2, 3, 4, 5};\n    printf(\"%d\\n\", arr[10]);\n    return 0;\n}",
+    "error_message": "Segmentation fault (core dumped)",
+    "expected_output": {
+      "error_type": "RuntimeError",
+      "should_identify": "Array index out of bounds",
+      "should_fix": true,
+      "fix_contains": "arr["
+    }
+  },
+  {
+    "test_id": "TC007",
+    "test_type": "Normal",
+    "language": "Python",
+    "description": "Logical off-by-one error in list iteration range",
+    "code": "def sum_list(numbers):\n    total = 0\n    for i in range(1, len(numbers)):\n        total += numbers[i]\n    return total\n\nprint(sum_list([1, 2, 3, 4, 5]))",
+    "error_message": "Expected output: 15, Got: 14",
+    "expected_output": {
+      "error_type": "LogicalError",
+      "should_identify": "Loop index starts at 1 instead of 0",
+      "should_fix": true,
+      "fix_contains": "range(0, len(numbers))"
+    }
+  },
+  {
+    "test_id": "TC008",
+    "test_type": "Normal",
+    "language": "JavaScript",
+    "description": "Variable used without prior declaration",
+    "code": "function calculateTotal(items) {\n    total = total + item;\n    return total;\n}",
+    "error_message": "ReferenceError: total is not defined",
+    "expected_output": {
+      "error_type": "ReferenceError",
+      "should_identify": "Variable used before declaration",
+      "should_fix": true,
+      "fix_contains": "let total = 0;"
+    }
+  },
+  {
+    "test_id": "TC009",
+    "test_type": "Edge",
+    "language": "Python",
+    "description": "Empty source code input string",
+    "code": "",
+    "error_message": "SyntaxError: unexpected EOF while parsing",
+    "expected_output": {
+      "error_type": "InvalidInput",
+      "should_identify": "Empty code provided",
+      "should_fix": false
+    }
+  },
+  {
+    "test_id": "TC010",
+    "test_type": "Edge",
+    "language": "Python",
+    "description": "Missing error message with type mismatch in code",
+    "code": "def add(a, b):\n    return a + b\n\nresult = add(5, '3')\nprint(result)",
+    "error_message": "",
+    "expected_output": {
+      "error_type": "TypeError",
+      "should_identify": "Type mismatch in operand addition without error traceback",
+      "should_fix": true,
+      "fix_contains": "add(5, 3)"
+    }
+  },
+  {
+    "test_id": "TC011",
+    "test_type": "Edge",
+    "language": "Auto-Detect",
+    "description": "Syntactically ambiguous code lacking main function",
+    "code": "int x = 5;\nint y = 10;\nint z = x + y;",
+    "error_message": "undefined reference to 'main'",
+    "expected_output": {
+      "error_type": "CompilationError",
+      "should_identify": "Missing main function entry point",
+      "should_fix": true,
+      "fix_contains": "main"
+    }
+  },
+  {
+    "test_id": "TC012",
+    "test_type": "Edge",
+    "language": "Python",
+    "description": "Very long multi-line source code snippet",
+    "code": "# Function 1\ndef process_data(data):\n    return [d * 2 for d in data]\n\n# Function 2\ndef filter_data(data):\n    return [d for d in data if d > 10]\n\n# Function 3\ndef aggregate_data(data):\n    total = 0\n    for d in data:\n        total += d\n    return total\n\n# Main dataset matrix\ndata_matrix = [[1, 2, 3], [4, 5, 6\n\nprint('Done')",
+    "error_message": "SyntaxError: closing parenthesis ')' does not match opening bracket '['",
+    "expected_output": {
+      "error_type": "SyntaxError",
+      "should_identify": "Unmatched bracket in data matrix",
+      "should_fix": true,
+      "fix_contains": "]]"
+    }
+  },
+  {
+    "test_id": "TC013",
+    "test_type": "Edge",
+    "language": "Python",
+    "description": "Typographic Unicode smart quotes pasted into code",
+    "code": "msg = “Hello World”\nprint(msg)",
+    "error_message": "SyntaxError: invalid character '“' (U+201C)",
+    "expected_output": {
+      "error_type": "SyntaxError",
+      "should_identify": "Confusable non-ASCII Unicode quotation marks",
+      "should_fix": true,
+      "fix_contains": "\"Hello World\""
+    }
+  },
+  {
+    "test_id": "TC014",
+    "test_type": "Invalid",
+    "language": "Python",
+    "description": "Misleading cross-language error log (Java error on valid Python code)",
+    "code": "print('Hello World')",
+    "error_message": "Exception in thread \"main\" java.lang.NullPointerException",
+    "expected_output": {
+      "error_type": "InputDiscrepancyWarning",
+      "should_identify": "Error traceback does not match Python language",
+      "should_fix": false
+    }
+  },
+  {
+    "test_id": "TC015",
+    "test_type": "Invalid",
+    "language": "Rust",
+    "description": "Unsupported programming language (Rust)",
+    "code": "fn main() {\n    println!(\"Hello, world!\");\n}",
+    "error_message": "error[E0308]: mismatched types",
+    "expected_output": {
+      "error_type": "UnsupportedLanguage",
+      "should_identify": "Unsupported programming language notification",
+      "should_fix": false
+    }
+  },
+  {
+    "test_id": "TC016",
+    "test_type": "Invalid",
+    "language": "Python",
+    "description": "Invalid non-textual input representation",
+    "code": "   \n\t  \n  ",
+    "error_message": "",
+    "expected_output": {
+      "error_type": "InvalidInput",
+      "should_identify": "Whitespace-only input rejected",
+      "should_fix": false
+    }
+  },
+  {
+    "test_id": "TC017",
+    "test_type": "Invalid",
+    "language": "Python",
+    "description": "Malformed model output recovered via secondary markdown parser",
+    "code": "def test():\n    pass",
+    "error_message": "malformed_json_fallback",
+    "expected_output": {
+      "error_type": "ParserFallback",
+      "should_identify": "Secondary recovery path engaged without application crash",
+      "should_fix": true
+    }
+  }
+]

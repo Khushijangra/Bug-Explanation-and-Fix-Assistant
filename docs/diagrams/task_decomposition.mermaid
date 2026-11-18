@@ -1,0 +1,33 @@
+graph TD
+    Goal["Bug Explanation and Fix Assistant"] --> T1["1. Diagnostic Task"]
+    Goal --> T2["2. Remediation Task"]
+    Goal --> T3["3. Pedagogical Task"]
+    Goal --> T4["4. Meta-Evaluation Task"]
+    
+    subgraph Diagnostic ["1. Diagnostic Task"]
+        T1 --> T1A["Classify Error (9 Taxonomy Classes)"]
+        T1 --> T1B["Pinpoint Line Index / Scope"]
+        T1 --> T1C["Gauge Severity (Critical/Major/Minor/Warning)"]
+        T1 --> T1D["Identify Root Cause & Violated Language Rules"]
+    end
+    
+    subgraph Remediation ["2. Remediation Task"]
+        T2 --> T2A["Synthesize Full Working Replacement Code"]
+        T2 --> T2B["Inject Inline # FIXED: / // FIXED: Comments"]
+        T2 --> T2C["Validate AST Syntax (Python)"]
+        T2 --> T2D["Distinguish Confirmed Fix vs Suggested Improvement"]
+    end
+    
+    subgraph Pedagogical ["3. Pedagogical Task"]
+        T3 --> T3A["Formulate Plain-Language Explanation"]
+        T3 --> T3B["Generate Intuitive Real-World Analogy"]
+        T3 --> T3C["Deconstruct 3-Part Walkthrough (Wrong -> Changed -> Works)"]
+        T3 --> T3D["Formulate Actionable Prevention Best Practices"]
+    end
+    
+    subgraph MetaEval ["4. Meta-Evaluation Task"]
+        T4 --> T4A["Score Confidence (High / Medium / Low)"]
+        T4 --> T4B["Enumerate Model Assumptions"]
+        T4 --> T4C["Document Static Analysis Limitations"]
+        T4 --> T4D["Multi-Prompt Comparison (V1 vs V2 vs V3)"]
+    end

@@ -2,23 +2,26 @@ graph TD
     User["User Browser"] --> UI["Streamlit Frontend (app.py)"]
     
     subgraph Frontend ["Presentation Layer"]
-        UI --> CodeIn["Code Input"]
-        UI --> ErrIn["Error Input"]
-        UI --> LangSelect["Language Selector"]
-        UI --> ResultsView["Results Dashboard (Tabs A-G)"]
-        UI --> CompView["Prompt Comparison View"]
+        UI --> CodeIn["Code Input Area (with Presets)"]
+        UI --> ErrIn["Error Message / Traceback"]
+        UI --> LangSelect["Language Selector & Auto-Detect"]
+        UI --> ResultsView["Results Dashboard (Sections A-G)"]
+        UI --> CompView["Prompt Comparison View (V1, V2, V3)"]
+        UI --> ViewerView["Prompt Viewer"]
     end
     
     subgraph Modules ["Application Core Modules"]
-        LangSelect --> LangDet["modules/language_detector.py<br/>(Heuristic Keyword & Pattern Scorer)"]
-        UI --> Analyzer["modules/bug_analyzer.py<br/>(Core Orchestration Engine)"]
-        Analyzer --> PM["modules/prompt_manager.py<br/>(V1, V2, V3 Lifecycle Manager)"]
-        Analyzer --> Formatter["modules/response_formatter.py<br/>(JSON Parser & UI Normalizer)"]
+        UI --> Config["modules/config.py<br/>(Central Configuration & Mode Source)"]
+        LangSelect --> LangDet["modules/language_detector.py<br/>(Heuristic Keyword & Regex Scorer)"]
+        UI --> Analyzer["modules/bug_analyzer.py<br/>(Analysis & Comparison Orchestrator)"]
+        Analyzer --> Config
+        Analyzer --> PM["modules/prompt_manager.py<br/>(V1, V2, V3, Final Template Manager)"]
+        Analyzer --> Formatter["modules/response_formatter.py<br/>(JSON & Markdown Parser, AST Validator)"]
     end
     
     subgraph Backends ["Inference Backends"]
-        Analyzer -->|APP_MODE=ai| Gemini["Google Gemini API<br/>(gemini-2.0-flash)"]
-        Analyzer -->|APP_MODE=demo| DemoEngine["Deterministic Demo Engine<br/>(12 Calibrated Cases)"]
+        Analyzer -->|APP_MODE=ai| Gemini["Google Gemini API<br/>(gemini-2.0-flash, temp=0.3)"]
+        Analyzer -->|APP_MODE=demo| DemoEngine["Deterministic Demo Engine<br/>(17 Calibrated Verification Cases)"]
     end
     
     Formatter --> ResultsView

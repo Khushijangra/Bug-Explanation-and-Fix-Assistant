@@ -1,0 +1,29 @@
+graph LR
+    subgraph Inputs ["User & Environmental Inputs"]
+        In1["Source Code Snippet"]
+        In2["Compiler / Runtime Traceback"]
+        In3["Target Language Selection"]
+        In4["Environment Config (.env / APP_MODE)"]
+    end
+
+    Inputs --> CoreFlow["Core Application Pipeline"]
+
+    subgraph CoreFlow ["Processing & Transformation Pipeline"]
+        P1["1. Language Heuristic Detection & Validation"] --> P2["2. Prompt Template Selection & Variable Binding"]
+        P2 --> P3["3. Backend Inference (Gemini API or Deterministic Engine)"]
+        P3 --> P4["4. Deserialization (JSON Validator / Fallback Markdown Parser)"]
+        P4 --> P5["5. AST Syntax Verification (Python)"]
+        P5 --> P6["6. Dual-Access UI Mapping (format_for_display)"]
+    end
+
+    CoreFlow --> Outputs ["7 Structured Dashboard Outputs"]
+
+    subgraph Outputs ["Structured Dashboard Outputs"]
+        OutA["Section A: Error Identification & Severity"]
+        OutB["Section B: Root Cause & Language Rules"]
+        OutC["Section C: Corrected Code with Fix Markers"]
+        OutD["Section D: Simple Explanation & Analogy"]
+        OutE["Section E: 3-Column Debugging Steps"]
+        OutF["Section F: Actionable Prevention Tips"]
+        OutG["Section G: Calibrated Confidence & Limitations"]
+    end

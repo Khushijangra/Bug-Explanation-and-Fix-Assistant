@@ -1,0 +1,25 @@
+{
+  "version": "2.0",
+  "name": "Structured Role-Based Prompt",
+  "purpose": "Role-prompted template enforcing beginner audience focus and 6 clear Markdown sections.",
+  "changes_from_previous": "Added expert debugging persona, beginner audience context, severity assessment, and 6 markdown output sections.",
+  "expected_improvements": [
+    "Consistent section-by-section breakdown (Error ID, Root Cause, Fix, Simple Explanation, Steps, Tips)",
+    "More beginner-friendly language and tone",
+    "Severity classification and basic prevention tips",
+    "Explicit instruction to state uncertainty"
+  ],
+  "limitations": [
+    "Free-form Markdown headings remain brittle for automated programmatic UI parsing",
+    "No formal error classification taxonomy (uses ad-hoc syntax/runtime)",
+    "No calibrated confidence scoring or assumption listing",
+    "Lacks explicit guards for empty code, cross-language mismatches, or unsupported languages"
+  ],
+  "variables": ["code", "error_message", "language"],
+  "output_format": "Structured Markdown text",
+  "model_settings": {
+    "temperature": 0.3,
+    "top_p": 0.95,
+    "max_output_tokens": 4096
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "name": "Basic Zero-Shot Prompt",
+  "purpose": "Baseline zero-shot instruction prompt to test unconstrained model bug-fixing behavior.",
+  "changes_from_previous": "Initial baseline iteration (no previous version).",
+  "expected_improvements": "Establishes a baseline for error identification and code repair.",
+  "limitations": [
+    "No structured output schema (unpredictable free text)",
+    "No role definition or pedagogical grounding",
+    "Uses complex programming terminology unsuited for beginners",
+    "No error taxonomy, severity grading, or line numbers",
+    "No step-by-step debugging walkthrough or prevention tips",
+    "Fails to handle edge cases or acknowledge uncertainty"
+  ],
+  "variables": ["code", "error_message", "language"],
+  "output_format": "Free-form text",
+  "model_settings": {
+    "temperature": 0.3,
+    "top_p": 0.95,
+    "max_output_tokens": 4096
+  }
+}

@@ -1,119 +1,107 @@
-# System Architecture
+# System Architecture: Bug Explanation and Fix Assistant
 
-## Overview
+## 1. System Overview
 
-The Bug Explanation and Fix Assistant is a web-based AI-powered debugging tool built with a modular architecture. It uses Google Gemini as the AI backbone and Streamlit for the frontend.
+The **Bug Explanation and Fix Assistant** is an AI-powered developer assistance web tool designed specifically for students and junior developers. It accepts buggy source code across 5 programming languages (Python, JavaScript, Java, C++, C) and associated compiler or runtime errors, diagnoses root causes, generates complete corrected code with inline annotations, unpacks concepts using beginner-friendly analogies, and guides users with 3-part step-by-step debugging walkthroughs.
 
-## Architecture Diagram
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     STREAMLIT FRONTEND                       │
-│  ┌──────────┐  ┌──────────┐  ┌───────────┐  ┌───────────┐  │
-│  │Code Input│  │Error     │  │Language   │  │Results    │  │
-│  │Module    │  │Input     │  │Selector   │  │Dashboard  │  │
-│  │          │  │Module    │  │           │  │           │  │
-│  └────┬─────┘  └────┬─────┘  └─────┬─────┘  └─────▲─────┘  │
-│       │              │              │              │         │
-│       └──────────────┴──────┬───────┘              │         │
-│                             ▼                      │         │
-│  ┌──────────────────────────────────────────────┐  │         │
-│  │              BUG ANALYZER MODULE             │  │         │
-│  │  ┌────────────────┐  ┌────────────────────┐  │  │         │
-│  │  │Language        │  │Prompt Manager      │  │  │         │
-│  │  │Detector        │  │(V1, V2, V3, Final) │  │  │         │
-│  │  └────────────────┘  └────────┬───────────┘  │  │         │
-│  │                               ▼              │  │         │
-│  │  ┌────────────────────────────────────────┐  │  │         │
-│  │  │         AI / Demo Engine               │  │  │         │
-│  │  │  ┌──────────┐    ┌──────────────┐      │  │  │         │
-│  │  │  │Gemini API│    │Demo Responses│      │  │  │         │
-│  │  │  │(AI Mode) │    │(Demo Mode)   │      │  │  │         │
-│  │  │  └──────────┘    └──────────────┘      │  │  │         │
-│  │  └────────────────────┬───────────────────┘  │  │         │
-│  │                       ▼                      │  │         │
-│  │  ┌────────────────────────────────────────┐  │  │         │
-│  │  │       Response Formatter               │──┼──┘         │
-│  │  │  JSON Parser → Normalizer → Display    │  │            │
-│  │  └────────────────────────────────────────┘  │            │
-│  └──────────────────────────────────────────────┘            │
-└─────────────────────────────────────────────────────────────┘
-
-                    EXTERNAL SERVICES
-         ┌──────────────────────────────┐
-         │  Google Gemini API           │
-         │  (gemini-2.0-flash)          │
-         │  - Text generation           │
-         │  - JSON structured output    │
-         └──────────────────────────────┘
-```
-
-## Component Details
-
-### 1. Streamlit Frontend (`app.py`)
-
-The main application entry point providing:
-- **Code Input Module**: Text area for source code with syntax highlighting placeholder
-- **Error Input Module**: Text area for error messages
-- **Language Selector**: Dropdown with auto-detection support
-- **Results Dashboard**: Expandable sections for all analysis components
-- **Prompt Comparison Page**: Side-by-side comparison of prompt versions
-- **Prompt Viewer Page**: View full prompt templates and metadata
-- **About Page**: Tool description and configuration guide
-
-### 2. Language Detector (`modules/language_detector.py`)
-
-Keyword and pattern-based language detection engine:
-- Maintains pattern databases for Python, JavaScript, Java, C++, and C
-- Uses weighted scoring with keyword matching, regex patterns, and error message analysis
-- Includes C vs C++ disambiguation logic
-- Returns language name and confidence score (0.0 to 0.95)
-
-### 3. Bug Analyzer (`modules/bug_analyzer.py`)
-
-Core analysis engine with dual-mode operation:
-- **AI Mode**: Sends prompts to Google Gemini API with configurable parameters
-- **Demo Mode**: Returns deterministic sample responses when API key is unavailable
-- Handles empty input, edge cases, and API errors gracefully
-- Provides prompt comparison functionality across all versions
-
-### 4. Prompt Manager (`modules/prompt_manager.py`)
-
-Manages prompt template lifecycle:
-- Loads prompt templates from versioned directories
-- Renders templates with code, error message, and language variables
-- Provides metadata access for prompt version information
-- Caches loaded prompts for performance
-
-### 5. Response Formatter (`modules/response_formatter.py`)
-
-Multi-format response parser:
-- **JSON Parser**: Extracts and validates JSON from AI responses (V3/final)
-- **Text Parser**: Extracts structured sections from free-form text (V1/V2)
-- **Normalizer**: Converts all formats to a standard display dictionary
-- **Display Formatter**: Adds UI-ready elements (icons, colors, labels)
-
-## Data Flow
+## 2. High-Level Architectural Diagram
 
 ```
-User Input → Language Detection → Prompt Selection → Prompt Rendering
-     → AI/Demo Analysis → Response Parsing → Display Formatting → UI
++───────────────────────────────────────────────────────────────────────────────────+
+│                            STREAMLIT FRONTEND (app.py)                            │
+│  +─────────────────────────+ +─────────────────────────+ +──────────────────────+  │
+│  │   Code & Error Input    │ │   Language Selector     │ │  Results Dashboard   │  │
+│  │   (Presets & Custom)    │ │   & Auto-Detect Badge   │ │     (Sections A-G)   │  │
+│  +------------+------------+ +------------+------------+ +----------▲-----------+  │
++---------------|---------------------------|-------------------------|-------------+
+                │                           │                         │
+                v                           v                         │
++---------------------------------------------------------------------+-------------+
+|                         APPLICATION MODULES SUBSYSTEM                             |
+|  +─────────────────────────────────+      +─────────────────────────────────────+ │
+|  |   modules/config.py             |      |     modules/response_formatter.py   | │
+|  |   Central Config & Mode State   |      |     JSON Deserializer & UI Mapper   | │
+|  +─────────────────+───────────────+      +──────────────────▲──────────────────+ │
+|                    │                                         │                    │
+|                    v                                         │                    │
+|  +─────────────────────────────────+      +──────────────────+──────────────────+ │
+|  |   modules/language_detector.py  |      |       modules/bug_analyzer.py       | │
+|  |   Heuristic Regex & Keyword     |      |   AI Orchestrator & Dual Backend    | │
+|  +─────────────────+───────────────+      +──────────────────▲──────────────────+ │
+|                    │                                         │                    │
+|                    v                                         │                    │
+|  +─────────────────────────────────+                         │                    │
+|  |   modules/prompt_manager.py     |─────────────────────────┘                    │
+|  |   Templates (V1, V2, V3, Final) │                                              │
+|  +─────────────────────────────────+                                              │
++-----------------------------------------------------------------------------------+
+                                             │
+               +─────────────────────────────+─────────────────────────────+
+               │                                                           │
+               v                                                           v
++─────────────────────────────────────────────+   +───────────────────────────────────+
+|         Google Gemini API Backend           |   |    Deterministic Verification     |
+|          (gemini-2.0-flash Model)           |   |          Demo Engine              |
+|        Live Inference via API Key           |   |   (17 Verified Reference Cases)   |
++─────────────────────────────────────────────+   +───────────────────────────────────+
 ```
 
-## Configuration
+## 3. Subsystem Breakdown
 
-| Variable | Purpose | Default |
-|----------|---------|---------|
-| `GEMINI_API_KEY` | Google Gemini API authentication | (required for AI mode) |
-| `APP_MODE` | Operating mode: "ai" or "demo" | "demo" |
-| `GEMINI_MODEL` | Gemini model identifier | "gemini-2.0-flash" |
+### 3.1 Presentation Layer (`app.py`)
+- **Technology:** Streamlit (v1.28+)
+- **Responsive Layout:** Laptop and desktop-optimized layout featuring custom CSS badges for severity (`Critical`, `Major`, `Minor`, `Warning`), 3-color step boxes (Wrong / Changed / Works), and mode banners.
+- **Interactive Controls:**
+  - Code Editor with sample presets dropdown (Python, JS, Java, C++, C, Edge cases).
+  - Error Input text area.
+  - Language dropdown with heuristic Auto-Detection badge displaying real-time confidence percentage.
+  - "Clear Input" and "Analyze Bug" action triggers.
+  - Multi-version Prompt Comparison View (side-by-side tabs and comparative matrix).
+  - Prompt Viewer and Academic About pages.
 
-## Technology Stack
+### 3.2 Configuration Subsystem (`modules/config.py`)
+- **Central Source of Truth:** Manages `APP_MODE` (`ai` vs `demo`), `GEMINI_API_KEY`, `GEMINI_MODEL`, and timeouts.
+- **Mode Decoupling:** `APP_MODE=demo` guarantees deterministic offline execution regardless of whether an API key exists in the environment. `APP_MODE=ai` requires a valid key, displaying clear warnings if credentials are missing rather than silently falling back.
 
-| Layer | Technology | Version |
-|-------|-----------|---------|
-| Frontend | Streamlit | ≥1.28.0 |
-| Backend | Python | ≥3.8 |
-| AI Engine | Google Gemini | gemini-2.0-flash |
-| Config | python-dotenv | ≥1.0.0 |
-| AI SDK | google-generativeai | ≥0.8.0 |
+### 3.3 Language Detection Engine (`modules/language_detector.py`)
+- **Heuristic Pattern Scoring:** Weighted evaluator scanning keywords (1.0 pt), syntax regexes (1.5 pts), and error traceback patterns (2.0 pts).
+- **C vs C++ Disambiguation:** Checks for C++ specific tokens (`cout`, `std::`, `iostream`, `nullptr`, `auto`) to prevent misclassification.
+- **Confidence Calibration:** Computes score saturation and outputs calibrated confidence between 0.25 and 0.95.
+
+### 3.4 Prompt Lifecycle Subsystem (`modules/prompt_manager.py`)
+- **Version Isolation:** Dedicated filesystem directories for `prompts/v1/`, `prompts/v2/`, `prompts/v3/`, and `prompts/final/`.
+- **Metadata Management:** Loads and normalizes version metadata, objectives, parameters, and limitations.
+
+### 3.5 Core Orchestrator (`modules/bug_analyzer.py`)
+- **Dual-Engine Routing:** Directs requests to either live Gemini inference or the deterministic demo engine based on configuration.
+- **Resilience:** Implements timeouts, quota limit interception, and friendly user error handling.
+- **Multi-Prompt Comparator:** Runs parallel model calls in AI mode, and provides structurally distinct pedagogical progression in Demo mode.
+
+### 3.6 Response Formatting & Deserialization (`modules/response_formatter.py`)
+- **Multi-Format Deserialization:** Primary JSON decoder with markdown code-fence extraction; secondary fallback regex heading extractor for unstructured model outputs.
+- **Dual-Access API:** Returns both nested section dictionaries and flat convenience keys to ensure calling code never encounters missing-attribute errors.
+- **Syntax Validator:** Isolated Python AST syntax checker (`ast.parse`) for evaluating the validity of synthesized code without executing arbitrary host code.
+
+## 4. Data Flow
+
+```
+1. Input Payload (Code, Error Message, Target Language)
+       │
+       ▼
+2. modules/config.py (Validates active mode and settings)
+       │
+       ▼
+3. modules/language_detector.py (Detects/Validates Language + Confidence)
+       │
+       ▼
+4. modules/prompt_manager.py (Binds variables to prompt template)
+       │
+       ▼
+5. modules/bug_analyzer.py (Executes Gemini query or calibrated demo pattern)
+       │
+       ▼
+6. modules/response_formatter.py (Parses JSON/Markdown + Validates Python AST)
+       │
+       ▼
+7. app.py (Renders 7 Dashboard Sections A–G)
+```
