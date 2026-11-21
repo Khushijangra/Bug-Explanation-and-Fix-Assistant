@@ -8,22 +8,24 @@
 - **Project Category:** AI-Powered Developer Assistance Tool
 - **Course Code:** SCSE4041
 - **Academic Milestone:** Milestone 2 (12 Marks)
-- **Academic Batch:** 2026–2027
-- **Team ID:** [Team ID Placeholder — e.g., T-SCSE-C5-04]
-- **Team Name:** [Team Name Placeholder — e.g., NeuralDebug Team]
-- **Faculty Supervisor:** [Faculty Name Placeholder — e.g., Dr. A. Sharma]
-- **Project Prototype URL:** [Localhost:8501 / Streamlit Cloud URL Placeholder]
-- **Version Control Repository:** [GitHub Repository URL Placeholder — e.g., https://github.com/team/Bug-Explanation-and-Fix-Assistant]
-- **Video Demonstration Reel URL:** [Video Demonstration Reel URL Placeholder — e.g., https://youtu.be/placeholder-reel]
+- **Batch Group:** B01 - B12
+- **Academic Year:** 2026–2027
+- **Team ID:** PE-B01-21
+- **Team Name:** Deadlock
+- **Team Leader:** Khushi Jangra (S24CSEU0666)
+- **Faculty Supervisor:** [Faculty Supervisor Name Placeholder]
+- **Project Prototype URL:** [Localhost:8501 / Streamlit Cloud Public URL Placeholder]
+- **Version Control Repository:** [GitHub / OneDrive Repository URL Placeholder — e.g., https://github.com/team/Bug-Explanation-and-Fix-Assistant]
+- **Video Demonstration Reel URL:** [Video Demonstration Reel URL Placeholder — e.g., https://drive.google.com/file/d/placeholder/view]
 
 ### Team Roster & Credentials
 | Member Name | Enrollment Number | Institutional Email | Degree Program |
 | :--- | :--- | :--- | :--- |
-| **[Team Leader Name]** | S24CSEU0666 | [leader@university.edu] | B.Tech Computer Science & Engineering |
-| **[Member 2 Name]** | S24CSEU0682 | [member2@university.edu] | B.Tech Computer Science & Engineering |
-| **[Member 3 Name]** | S24CSEU0674 | [member3@university.edu] | B.Tech Computer Science & Engineering |
-| **[Member 4 Name]** | S24CSEU0668 | [member4@university.edu] | B.Tech Computer Science & Engineering |
-| **[Member 5 Name]** | S24CSEU1023 | [member5@university.edu] | B.Tech Computer Science & Engineering |
+| **Khushi Jangra** (Team Leader) | S24CSEU0666 | [leader@university.edu] | B.Tech Computer Science & Engineering |
+| **Janwi Singh** | S24CSEU0682 | [janwi@university.edu] | B.Tech Computer Science & Engineering |
+| **Jaismeen Kaur** | S24CSEU0674 | [jaismeen@university.edu] | B.Tech Computer Science & Engineering |
+| **Kangna Bansal** | S24CSEU0668 | [kangna@university.edu] | B.Tech Computer Science & Engineering |
+| **Akharsh Tyagi** | S24CSEU1023 | [akharsh@university.edu] | B.Tech Computer Science & Engineering |
 
 ---
 
@@ -630,8 +632,9 @@ Bug-Explanation-and-Fix-Assistant/
 *(The complete 2-page Standalone Technical Report is reproduced below matching docs/technical_report.md)*
 
 ## Technical Report: Bug Explanation and Fix Assistant
-**Course:** SCSE4041 Mini Project (Milestone 2) | **Team ID:** T-SCSE-C5-04 | **Date:** November 2026  
-**Team Roster:** S24CSEU0666 (Lead), S24CSEU0682, S24CSEU0674, S24CSEU0668, S24CSEU1023
+**Course:** SCSE4041 Mini Project (Milestone 2) | **Team ID:** PE-B01-21 | **Team Name:** Deadlock | **Date:** November 2026  
+**Team Leader:** Khushi Jangra (S24CSEU0666)  
+**Team Roster:** Khushi Jangra (S24CSEU0666, Lead), Janwi Singh (S24CSEU0682), Jaismeen Kaur (S24CSEU0674), Kangna Bansal (S24CSEU0668), Akharsh Tyagi (S24CSEU1023)
 
 ### A. Project Overview
 - **Problem Addressed:** Novice programmers struggle with cryptic compiler diagnostics and stack traces (`Segmentation fault`, `NullPointerException`, `unexpected EOF`) that report execution failures without explaining conceptual root causes or providing actionable fixes.
@@ -688,11 +691,11 @@ The solution uses a decoupled 5-tier architecture:
 
 | Member Name | Enrollment Number | Assigned Role | Tasks Completed in Milestone 2 | Documented Evidence | Contribution % |
 | :--- | :--- | :--- | :--- | :--- | :---: |
-| **[Team Leader Name]** | S24CSEU0666 | Project Lead & Core AI System Architect | Overall Architecture, Core AI Bug Analyzer Engine (`modules/bug_analyzer.py`), Google Gemini 2.0 Flash API Integration, Dual-Mode Controller (`modules/config.py`) | Git commits, `modules/bug_analyzer.py`, `modules/config.py` | **28.0%** |
-| **[Member 2 Name]** | S24CSEU0682 | Prompt Engineering Specialist | Prompt Engineering iterations (V1 Zero-Shot, V2 Structured, V3 Optimized Few-Shot), Taxonomy Design, and Prompt Metadata | `prompts/` directory, `modules/prompt_manager.py` | **18.0%** |
-| **[Member 3 Name]** | S24CSEU0674 | Full-Stack Frontend UI/UX Developer | Streamlit Frontend (`app.py`), UI/UX Layout, 7-Section Result Dashboard (Sections A–G), and Prompt Comparison Interface | `app.py`, custom CSS styling | **18.0%** |
-| **[Member 4 Name]** | S24CSEU0668 | Language & Syntax Parsing Specialist | Heuristic Language Detector (`modules/language_detector.py`), RFC 8259 JSON Deserializer & Formatter (`modules/response_formatter.py`), and Isolated Python AST Syntax Validator | `modules/language_detector.py`, `modules/response_formatter.py` | **18.0%** |
-| **[Member 5 Name]** | S24CSEU1023 | Software QA & Documentation Specialist | 17-Case Automated Test Suite (`tests/test_application.py`), Test Data (`test-data/`), Empirical Execution Logging, and Milestone 2 Technical Documentation | `tests/`, `test-data/test_results.json`, `docs/` | **18.0%** |
+| **Khushi Jangra** | S24CSEU0666 | Team Leader & Core AI System Architect | Overall Architecture, Core AI Bug Analyzer Engine (`modules/bug_analyzer.py`), Google Gemini 2.0 Flash API Integration, Dual-Mode Controller (`modules/config.py`) | Git commits, `modules/bug_analyzer.py`, `modules/config.py` | **28.0%** |
+| **Janwi Singh** | S24CSEU0682 | Prompt Engineering Specialist | Prompt Engineering iterations (V1 Zero-Shot, V2 Structured, V3 Optimized Few-Shot), Error Taxonomy, and Prompt Metadata | `prompts/` directory, `modules/prompt_manager.py` | **18.0%** |
+| **Jaismeen Kaur** | S24CSEU0674 | Full-Stack Frontend UI/UX Developer | Streamlit Frontend (`app.py`), UI/UX Layout, 7-Section Result Dashboard (Sections A–G), and Prompt Comparison Interface | `app.py`, custom CSS styling | **18.0%** |
+| **Kangna Bansal** | S24CSEU0668 | Language & Syntax Parsing Specialist | Heuristic Language Detector (`modules/language_detector.py`), RFC 8259 JSON Deserializer & Formatter (`modules/response_formatter.py`), and Isolated Python AST Syntax Validator | `modules/language_detector.py`, `modules/response_formatter.py` | **18.0%** |
+| **Akharsh Tyagi** | S24CSEU1023 | Software QA & Documentation Specialist | 17-Case Automated Test Suite (`tests/test_application.py`), Test Data (`test-data/`), Empirical Execution Logging, and Milestone 2 Technical Documentation | `tests/`, `test-data/test_results.json`, `docs/` | **18.0%** |
 | **TOTAL** | | | | | **100.0%** |
 
 ---

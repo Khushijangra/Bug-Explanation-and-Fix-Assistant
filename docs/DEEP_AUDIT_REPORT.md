@@ -1,6 +1,9 @@
 # DEEP AUDIT, FUNCTIONAL VERIFICATION & IMPROVEMENT REPORT
 **Project Name:** Bug Explanation and Fix Assistant  
 **Academic Course:** SCSE4041 Mini Project — Milestone 2 (12 Marks)  
+**Team ID:** PE-B01-21 | **Team Name:** Deadlock | **Batch Group:** B01 - B12  
+**Team Leader:** Khushi Jangra (S24CSEU0666)  
+**Team Members:** Khushi Jangra (S24CSEU0666, Lead), Janwi Singh (S24CSEU0682), Jaismeen Kaur (S24CSEU0674), Kangna Bansal (S24CSEU0668), Akharsh Tyagi (S24CSEU1023)  
 **Audit Date:** November 21, 2026  
 **Auditor:** Senior Full-Stack, AI & QA Engineering Audit Lead  
 
@@ -228,10 +231,10 @@ TEST SUITE EXECUTION SUMMARY
 
 ## 13. Remaining Manual Actions for Submission
 
-The codebase, tests, and documentation are 100% complete and verified. The following 4 team-specific URLs/files must be pasted/uploaded during final submission:
-1. **Student Names:** Replace the `[Name]` placeholders in Section 1 and Section 7 of the report with each member's actual name.
-2. **Repository Link:** Provide your team's GitHub or Google Drive project URL.
-3. **Demo Reel URL:** Upload your recorded video (following `docs/demo_reel_script.md`) to Google Drive or YouTube and paste the link with "Anyone with the link can view" permissions.
+The codebase, tests, documentation, and verified team rosters (names and enrollment IDs) are 100% complete and synchronized. The following team-specific URLs/files must be pasted/uploaded during final submission on the MS Forms portal:
+1. **Faculty Supervisor Name:** Confirm your assigned faculty supervisor name for Question 6/Cover Page.
+2. **Repository Link:** Provide your team's GitHub or shared Google Drive project URL (Question 12).
+3. **Demo Reel URL:** Upload your recorded video (following `docs/demo_reel_script.md`) to Google Drive or YouTube and paste the link with "Anyone with the link can view" permissions (Question 13).
 4. **PDF Uploads:** Upload `docs/technical_report.pdf` (for Question 16) and `docs/milestone_2_report_submission.pdf` (for Question 21).
 
 ---
@@ -241,9 +244,10 @@ The codebase, tests, and documentation are 100% complete and verified. The follo
 Following the initial audit, the project underwent a rigorous final refinement and verification cycle:
 
 1. **5-Member Team Roster Synchronized:**
-   - Updated across `docs/milestone_2_report.md` (Sections 1 & 7), `docs/technical_report.md`, `README.md`, and `final_delivery/README.txt`.
-   - Lead architect and core AI engine duties assigned to team leader `S24CSEU0666` (28.0%).
-   - Contributions balanced across all 5 members (`S24CSEU0682`, `S24CSEU0674`, `S24CSEU0668`, `S24CSEU1023` at 18.0% each) totaling **100.0%**.
+   - Team ID: `PE-B01-21`, Team Name: `Deadlock`, Batch Group: `B01 - B12`.
+   - Team Leader: `Khushi Jangra` (`S24CSEU0666`), Lead architect & Core AI engine (28.0%).
+   - Members: `Janwi Singh` (`S24CSEU0682`), `Jaismeen Kaur` (`S24CSEU0674`), `Kangna Bansal` (`S24CSEU0668`), `Akharsh Tyagi` (`S24CSEU1023`) at 18.0% each, totaling exactly **100.0%**.
+   - Synchronized across `docs/milestone_2_report.md` (Sections 1 & 7), `docs/technical_report.md`, `README.md`, and `final_delivery/README.txt`.
 
 2. **Technical Report Shortened to 2 Pages:**
    - Streamlined `docs/technical_report.md` into 8 academic sections (A through H).

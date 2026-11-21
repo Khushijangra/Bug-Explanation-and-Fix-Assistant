@@ -90,7 +90,7 @@ def capture():
     # Draw header banner
     draw.rectangle([(40, 30), (1360, 110)], fill=panel_color)
     draw.text((65, 45), "📁 Bug-Explanation-and-Fix-Assistant — Repository & Deliverable Structure", fill=text_color, font=font_title)
-    draw.text((65, 80), "SCSE4041 Mini Project (Milestone 2) · Clean Architecture · 17 Test Scenarios · V1/V2/V3 Prompt Versions", fill=accent_blue, font=font_sub)
+    draw.text((65, 80), "SCSE4041 Milestone 2 · Team PE-B01-21 (Deadlock) · Leader: Khushi Jangra · Batch B01-B12", fill=accent_blue, font=font_sub)
 
     repo_text = """
 Bug-Explanation-and-Fix-Assistant/

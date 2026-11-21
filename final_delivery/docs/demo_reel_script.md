@@ -1,6 +1,8 @@
 # Video Demonstration Script: Bug Explanation and Fix Assistant
 
-**Project:** Bug Explanation and Fix Assistant (SCSE4041 - Milestone 2)  
+**Project Title:** Bug Explanation and Fix Assistant  
+**Course:** SCSE4041 Mini Project (Milestone 2) | **Batch Group:** B01 - B12  
+**Team ID:** PE-B01-21 | **Team Name:** Deadlock | **Team Leader:** Khushi Jangra (S24CSEU0666)  
 **Target Video Duration:** 105 seconds (Within 90–150 seconds range)  
 **Format:** Screen recording with voiceover narration  
 **Recorded Quality:** 1080p 60fps  

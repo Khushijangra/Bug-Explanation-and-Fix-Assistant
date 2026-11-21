@@ -181,15 +181,18 @@ All test results are logged into `test-data/test_results.json`.
 
 - **Course:** SCSE4041 Mini Project
 - **Milestone:** Milestone 2 (12 Marks)
-- **Project:** Bug Explanation and Fix Assistant
-- **Team ID:** [Team ID Placeholder — e.g., T-SCSE-C5-04]
+- **Project Title:** Bug Explanation and Fix Assistant
+- **Team ID:** PE-B01-21
+- **Team Name:** Deadlock
+- **Team Leader:** Khushi Jangra (S24CSEU0666)
+- **Batch Group:** B01 - B12
 - **Documentation:** See `docs/milestone_2_report.md` for the complete 7-section submission report.
 
 ### Team Roster & Responsibilities
 | Enrollment Number | Member Name | Role & Responsibility |
 | :--- | :--- | :--- |
-| **S24CSEU0666** | [Team Leader Name] | Project Lead, System Architecture, Core AI Bug Analyzer Engine, Google Gemini 2.0 Flash API Integration, and Dual-Mode Runtime Logic |
-| **S24CSEU0682** | [Member 2 Name] | Prompt Engineering Iterations (V1 Zero-Shot, V2 Structured, V3 Optimized Few-Shot), Error Taxonomy, and Prompt Metadata |
-| **S24CSEU0674** | [Member 3 Name] | Streamlit Frontend UI/UX, Multi-Page Layout (Analyzer, Comparison, Viewer), and 7-Section Results Dashboard |
-| **S24CSEU0668** | [Member 4 Name] | Heuristic Language Detector (Python/JS/Java/C++/C), RFC 8259 JSON Parser, and Python AST Syntax Validator |
-| **S24CSEU1023** | [Member 5 Name] | Automated Testing Suite (17 Normal/Edge/Invalid Test Cases), Empirical Prompt Comparison Logs, and Milestone 2 Documentation |
+| **S24CSEU0666** | Khushi Jangra (Lead) | Project Lead, System Architecture, Core AI Bug Analyzer Engine, Google Gemini 2.0 Flash API Integration, and Dual-Mode Runtime Logic |
+| **S24CSEU0682** | Janwi Singh | Prompt Engineering Iterations (V1 Zero-Shot, V2 Structured, V3 Optimized Few-Shot), Error Taxonomy, and Prompt Metadata |
+| **S24CSEU0674** | Jaismeen Kaur | Streamlit Frontend UI/UX, Multi-Page Layout (Analyzer, Comparison, Viewer), and 7-Section Results Dashboard |
+| **S24CSEU0668** | Kangna Bansal | Heuristic Language Detector (Python/JS/Java/C++/C), RFC 8259 JSON Parser, and Python AST Syntax Validator |
+| **S24CSEU1023** | Akharsh Tyagi | Automated Testing Suite (17 Normal/Edge/Invalid Test Cases), Empirical Prompt Comparison Logs, and Milestone 2 Documentation |

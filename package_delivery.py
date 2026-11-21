@@ -91,17 +91,19 @@ if tech_pdf_src.exists():
 # Generate README.txt inside final_delivery
 readme_txt_content = """========================================================================
 SCSE4041 MINI PROJECT — MILESTONE 2 FINAL DELIVERY PACKAGE
-Project: Bug Explanation and Fix Assistant
+Project Title: Bug Explanation and Fix Assistant
 Course: SCSE4041 Mini Project (12 Marks)
-Team ID: T-SCSE-C5-04
+Team ID: PE-B01-21
+Team Name: Deadlock
+Batch Group: B01 - B12
 ========================================================================
 
 TEAM MEMBERS:
-- S24CSEU0666 - [Team Leader Name] (Lead & Core AI Engine Architect)
-- S24CSEU0682 - [Member 2 Name] (Prompt Engineering Specialist)
-- S24CSEU0674 - [Member 3 Name] (Streamlit Frontend UI/UX Developer)
-- S24CSEU0668 - [Member 4 Name] (Language & Syntax Parsing Specialist)
-- S24CSEU1023 - [Member 5 Name] (QA, Test Harness & Documentation Specialist)
+- S24CSEU0666 - Khushi Jangra (Team Leader & Core AI Engine Architect)
+- S24CSEU0682 - Janwi Singh (Prompt Engineering Specialist)
+- S24CSEU0674 - Jaismeen Kaur (Streamlit Frontend UI/UX Developer)
+- S24CSEU0668 - Kangna Bansal (Language & Syntax Parsing Specialist)
+- S24CSEU1023 - Akharsh Tyagi (QA, Test Harness & Documentation Specialist)
 
 DELIVERABLE CONTENTS:
 1. Milestone_2_Submission_Report.pdf : Official 7-Section Academic Report

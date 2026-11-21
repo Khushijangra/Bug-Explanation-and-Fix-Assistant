@@ -1,6 +1,7 @@
 # Technical Report: Bug Explanation and Fix Assistant
-**Course:** SCSE4041 Mini Project (Milestone 2) | **Team ID:** T-SCSE-C5-04 | **Date:** November 2026
-**Team Roster:** S24CSEU0666 (Lead), S24CSEU0682, S24CSEU0674, S24CSEU0668, S24CSEU1023
+**Course:** SCSE4041 Mini Project (Milestone 2) | **Team ID:** PE-B01-21 | **Team Name:** Deadlock | **Date:** November 2026  
+**Team Leader:** Khushi Jangra (S24CSEU0666) | **Batch Group:** B01 - B12  
+**Team Roster:** Khushi Jangra (S24CSEU0666, Lead), Janwi Singh (S24CSEU0682), Jaismeen Kaur (S24CSEU0674), Kangna Bansal (S24CSEU0668), Akharsh Tyagi (S24CSEU1023)
 
 ---
 
