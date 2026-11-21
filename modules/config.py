@@ -56,19 +56,66 @@ class AppConfig:
         return "🎮 Demo Mode (Deterministic Verification)"
 
 
-def get_app_config() -> AppConfig:
+def get_app_config(
+    custom_mode: Optional[str] = None,
+    custom_api_key: Optional[str] = None,
+) -> AppConfig:
     """
-    Read configuration from environment variables with APP_MODE as primary source of truth.
+    Read configuration from Streamlit Cloud Secrets, environment variables, or explicit overrides.
+
+    Priority for API Key:
+    1. custom_api_key (if explicitly provided via UI)
+    2. Streamlit Cloud Secrets (st.secrets["GEMINI_API_KEY"])
+    3. Environment variables (os.environ["GEMINI_API_KEY"] or .env)
+
+    Priority for Mode:
+    1. custom_mode (if explicitly provided via UI)
+    2. Streamlit Cloud Secrets (st.secrets["APP_MODE"])
+    3. Environment variables (os.environ["APP_MODE"] or .env)
+    4. Default: 'demo'
 
     Rules:
-    1. APP_MODE defaults to 'demo' unless explicitly set to 'ai'.
-    2. If APP_MODE='demo', demo mode is ALWAYS used, even if an API key exists.
-    3. If APP_MODE='ai', genuine AI execution is attempted.
+    - If APP_MODE='demo', demo mode is used (offline deterministic).
+    - If APP_MODE='ai', genuine AI execution is attempted when key is present.
+    - If no key is configured, the application never crashes and reports clear status.
     """
-    raw_mode = os.environ.get("APP_MODE", "demo").strip().lower()
+    secret_key = None
+    secret_mode = None
+
+    # Safely query Streamlit Cloud Secrets without crashing in non-Streamlit environments
+    try:
+        import streamlit as st
+        if hasattr(st, "secrets"):
+            try:
+                secret_key = st.secrets.get("GEMINI_API_KEY", None)
+            except Exception:
+                secret_key = None
+            try:
+                secret_mode = st.secrets.get("APP_MODE", None)
+            except Exception:
+                secret_mode = None
+    except Exception:
+        pass
+
+    # Resolve mode
+    if custom_mode:
+        raw_mode = custom_mode
+    elif secret_mode:
+        raw_mode = str(secret_mode)
+    else:
+        raw_mode = os.environ.get("APP_MODE", "demo")
+
+    raw_mode = str(raw_mode).strip().lower()
     app_mode = "ai" if raw_mode == "ai" else "demo"
 
-    api_key = os.environ.get("GEMINI_API_KEY", "").strip() or None
+    # Resolve API Key
+    if custom_api_key is not None and custom_api_key.strip():
+        api_key = custom_api_key.strip()
+    elif secret_key:
+        api_key = str(secret_key).strip() or None
+    else:
+        api_key = os.environ.get("GEMINI_API_KEY", "").strip() or None
+
     model_name = os.environ.get("GEMINI_MODEL", "gemini-2.0-flash").strip()
     timeout = int(os.environ.get("GEMINI_TIMEOUT_SECONDS", "30"))
 

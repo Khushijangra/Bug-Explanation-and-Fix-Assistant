@@ -176,14 +176,49 @@ SAMPLE_CASES = {
 with st.sidebar:
     st.markdown("## ⚙️ Configuration")
 
-    # Mode Status Badge
-    if config.app_mode == "ai":
-        if config.has_valid_api_key:
-            st.success(f"🤖 **AI Mode Active**\n\nModel: `{config.gemini_model}`")
+    # Mode Selector
+    current_default = 1 if (config.app_mode == "ai" and config.has_valid_api_key) else 0
+    mode_selection = st.radio(
+        "Execution Mode",
+        ["🎮 Demo Mode (Offline)", "🤖 AI Mode (Gemini 2.0 Flash)"],
+        index=current_default,
+        help="Demo Mode is deterministic and verified offline. AI Mode connects to Google Gemini 2.0 Flash.",
+        key="sidebar_mode_select",
+    )
+
+    target_mode = "ai" if "AI Mode" in mode_selection else "demo"
+
+    if target_mode == "ai":
+        base_cfg = get_app_config(custom_mode="ai")
+        if base_cfg.has_valid_api_key:
+            st.success(f"🤖 **AI Mode Connected**\n\nModel: `{base_cfg.gemini_model}`\n(Configured via Secrets/Env)")
+            new_config = base_cfg
         else:
-            st.error("⚠️ **AI Mode Error**\n\n`APP_MODE=ai` is set, but `GEMINI_API_KEY` is missing or invalid in `.env`.")
+            st.info("🔑 **Gemini API Key Required**\nEnter your key below or add `GEMINI_API_KEY` to Streamlit Secrets.")
+            user_key_input = st.text_input(
+                "Gemini API Key",
+                type="password",
+                placeholder="AIzaSy...",
+                help="Get a free key from https://aistudio.google.com/ (never stored or logged).",
+                key="sidebar_key_input",
+            )
+            if user_key_input.strip():
+                new_config = get_app_config(custom_mode="ai", custom_api_key=user_key_input)
+                if new_config.has_valid_api_key:
+                    st.success(f"🤖 **Key Accepted** (`{new_config.gemini_model}`)")
+                else:
+                    st.warning("Key format appears invalid.")
+            else:
+                new_config = get_app_config(custom_mode="ai", custom_api_key="")
+                st.caption("ℹ️ Provide a key above to enable live AI inference.")
     else:
-        st.info("🎮 **Demo Mode Active**\n\nDeterministic verification with calibrated responses.")
+        new_config = get_app_config(custom_mode="demo")
+        st.info("🎮 **Demo Mode Active**\n\nDeterministic verification with calibrated responses across 17 test cases.")
+
+    # Apply configuration to analyzer if changed
+    if (new_config.app_mode != analyzer.config.app_mode) or (new_config.gemini_api_key != analyzer.config.gemini_api_key):
+        analyzer.set_config(new_config)
+    config = analyzer.config
 
     st.divider()
 

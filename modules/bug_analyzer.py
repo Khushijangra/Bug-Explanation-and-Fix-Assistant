@@ -831,10 +831,15 @@ SIMULATED_PROMPT_COMPARISONS: Dict[str, Dict[str, dict]] = {
 class BugAnalyzer:
     """Core bug analyzer coordinating AI-powered and demo-mode debugging."""
 
-    def __init__(self):
-        self.config: AppConfig = get_app_config()
+    def __init__(self, config: Optional[AppConfig] = None):
+        self.config: AppConfig = config or get_app_config()
         self.prompt_manager = PromptManager()
         self._model = None
+        self._init_backend()
+
+    def set_config(self, config: AppConfig):
+        """Update active configuration and re-initialize backend."""
+        self.config = config
         self._init_backend()
 
     def _init_backend(self):
@@ -848,6 +853,8 @@ class BugAnalyzer:
             except Exception as e:
                 logger.error("Failed to initialize Gemini: %s", e)
                 self._model = None
+        else:
+            self._model = None
 
     @property
     def is_ai_mode(self) -> bool:
@@ -859,7 +866,7 @@ class BugAnalyzer:
         if self.is_ai_mode:
             return f"🤖 AI Mode ({self.config.gemini_model})"
         if self.config.app_mode == "ai" and not self.config.has_valid_api_key:
-            return "⚠️ AI Mode (Missing API Key in .env)"
+            return "⚠️ AI Mode (Missing API Key in Secrets/.env)"
         return "🎮 Demo Mode (Deterministic Verification)"
 
     def analyze(
@@ -891,8 +898,8 @@ class BugAnalyzer:
         if self.config.app_mode == "ai":
             if not self.config.has_valid_api_key:
                 err = self._error_response(
-                    "APP_MODE is set to 'ai', but no valid GEMINI_API_KEY was found in environment. "
-                    "Please set your key in .env or switch APP_MODE=demo."
+                    "AI Mode is active, but no valid GEMINI_API_KEY was found in Streamlit Secrets or environment. "
+                    "Please configure GEMINI_API_KEY in Streamlit Secrets / sidebar, or switch to Demo Mode."
                 )
                 formatted = format_for_display(err)
                 formatted["_meta"] = {
