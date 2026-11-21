@@ -9,6 +9,20 @@ An AI-powered developer assistance tool designed for **students and junior devel
 
 ---
 
+## 🌐 Live Demo & Cloud Deployment
+
+The application is fully configured and ready for **Streamlit Community Cloud**:
+
+- **Deployment Platform:** Streamlit Community Cloud (`https://share.streamlit.io/`)
+- **GitHub Repository:** `https://github.com/Khushijangra/Bug-Explanation-and-Fix-Assistant`
+- **Main Branch:** `master`
+- **Entry Point:** `app.py`
+- **🎮 Demo Mode:** Available immediately on startup — 100% offline, reproducible, and deterministic across 17 test cases (Python, JavaScript, Java, C++, C). Zero setup or API key required.
+- **🤖 AI Mode:** Connects live to Google Gemini 2.0 Flash (`gemini-2.0-flash`). Can be activated by adding `GEMINI_API_KEY` to Streamlit Cloud Secrets, or by entering a free Google AI Studio key directly into the sidebar password field during an active session (never stored or logged).
+- **Security:** Zero hardcoded API keys. All credentials are encrypted via Streamlit Secrets or session state.
+
+---
+
 ## 🎯 Overview
 
 Programming errors can be overwhelming for beginners. Standard compiler and runtime errors often present cryptically (e.g. `Segmentation fault`, `unexpected EOF while parsing`, `NullPointerException`), without explaining *why* they happened or how to fix them conceptually.

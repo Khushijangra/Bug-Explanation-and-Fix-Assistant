@@ -27,6 +27,7 @@ dirs_to_copy = [
     "tests",
     "docs",
     "screenshots",
+    ".streamlit",
 ]
 
 # Root files to copy
@@ -132,14 +133,19 @@ QUICK START INSTRUCTIONS:
    python tests/test_application.py
    (Executes 10 Unit Tests, 17 Integration Tests, 5 Semantic Tests, and AI status)
 
-APPLICATION MODES:
-------------------
+APPLICATION MODES & CLOUD DEPLOYMENT:
+-------------------------------------
+- STREAMLIT COMMUNITY CLOUD:
+  Configured for instant one-click deployment at https://share.streamlit.io/
+  Repository: https://github.com/Khushijangra/Bug-Explanation-and-Fix-Assistant
+  Entry point: app.py (Branch: master)
+
 - DEMO MODE (Default, Offline):
   Works completely out-of-the-box with zero API key dependencies across 17 calibrated scenarios.
   Guarantees zero-hallucination deterministic demonstration for academic grading.
 
 - AI MODE (Online Google Gemini 2.0 Flash):
-  Set APP_MODE=ai and configure GEMINI_API_KEY=your_key_here in .env.
+  Set APP_MODE=ai and configure GEMINI_API_KEY in Streamlit Secrets, sidebar, or .env.
 ========================================================================
 """
 
