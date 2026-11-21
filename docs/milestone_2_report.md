@@ -13,9 +13,9 @@
 - **Team ID:** PE-B01-21
 - **Team Name:** Deadlock
 - **Team Leader:** Khushi Jangra (S24CSEU0666)
-- **Faculty Supervisor:** [Faculty Supervisor Name Placeholder]
-- **Project Prototype URL:** [Localhost:8501 / Streamlit Cloud Public URL Placeholder]
-- **Version Control Repository:** [GitHub / OneDrive Repository URL Placeholder — e.g., https://github.com/team/Bug-Explanation-and-Fix-Assistant]
+- **Faculty Supervisor:** Dr. Sonal Kukreja
+- **Project Prototype URL:** http://localhost:8501
+- **Version Control Repository:** https://github.com/Khushijangra/Bug-Explanation-and-Fix-Assistant
 - **Video Demonstration Reel URL:** [Video Demonstration Reel URL Placeholder — e.g., https://drive.google.com/file/d/placeholder/view]
 
 ### Team Roster & Credentials

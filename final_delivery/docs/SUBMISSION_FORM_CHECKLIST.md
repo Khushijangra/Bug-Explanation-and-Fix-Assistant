@@ -20,7 +20,7 @@
 | **Q9** | Main AI tool and model used | `Gemini 2.0 Flash in Google AI Studio (gemini-2.0-flash)` | `modules/config.py`, `bug_analyzer.py` | ✅ **READY** | Directly copy-paste. |
 | **Q10** | Number of prompts in final solution (1 ~ 50) | `1` | `prompts/final/prompt.txt` | ✅ **READY** | Enter `1` (The unified multi-step schema prompt). |
 | **Q11** | Prototype link | `http://localhost:8501` | Active Streamlit server | ⚠️ **ACTION** | Enter `http://localhost:8501` or your public Streamlit Cloud deployment URL. |
-| **Q12** | Git repository or Google Drive folder link | *[Your Team's GitHub / Drive URL]* | Team version control | ⚠️ **ACTION** | Paste your public GitHub or shared Drive link. |
+| **Q12** | Git repository or Google Drive folder link | `https://github.com/Khushijangra/Bug-Explanation-and-Fix-Assistant` | Team GitHub repository | ✅ **READY** | Directly copy-paste. |
 | **Q13** | Share link to your reel (Drive / unlisted YouTube) | *[Your Video URL]* | Recorded video demo | ⚠️ **ACTION** | Paste video link with "Anyone with link can view". |
 | **Q14** | Short Video and Reel length in seconds (90–150) | `105` | `docs/demo_reel_script.md` | ✅ **READY** | Enter `105`. |
 | **Q15** | Supporting document type | `Technical Report` | `docs/technical_report.pdf` | ✅ **READY** | Select `Technical Report`. |
