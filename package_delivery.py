@@ -74,9 +74,12 @@ for d in dirs_to_copy:
         print(f"  Copied directory: {d}/")
 
 # Copy PDFs to root of final_delivery for convenient evaluator access
-m2_pdf_src = BASE_DIR / "docs" / "milestone_2_report_submission.pdf"
-if not m2_pdf_src.exists():
-    m2_pdf_src = BASE_DIR / "docs" / "milestone_2_report.pdf"
+candidates = [
+    BASE_DIR / "docs" / "Deadlock_Milestone2_Report.pdf",
+    BASE_DIR / "docs" / "milestone_2_report_submission.pdf",
+    BASE_DIR / "docs" / "milestone_2_report.pdf",
+]
+m2_pdf_src = next((p for p in candidates if p.exists()), candidates[-1])
 m2_pdf_dst = DELIVERY_DIR / "Milestone_2_Submission_Report.pdf"
 if m2_pdf_src.exists():
     shutil.copy2(m2_pdf_src, m2_pdf_dst)

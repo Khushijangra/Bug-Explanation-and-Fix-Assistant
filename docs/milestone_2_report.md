@@ -21,11 +21,11 @@
 ### Team Roster & Credentials
 | Member Name | Enrollment Number | Institutional Email | Degree Program |
 | :--- | :--- | :--- | :--- |
-| **Khushi Jangra** (Team Leader) | S24CSEU0666 | [leader@university.edu] | B.Tech Computer Science & Engineering |
-| **Janwi Singh** | S24CSEU0682 | [janwi@university.edu] | B.Tech Computer Science & Engineering |
-| **Jaismeen Kaur** | S24CSEU0674 | [jaismeen@university.edu] | B.Tech Computer Science & Engineering |
-| **Kangna Bansal** | S24CSEU0668 | [kangna@university.edu] | B.Tech Computer Science & Engineering |
-| **Akharsh Tyagi** | S24CSEU1023 | [akharsh@university.edu] | B.Tech Computer Science & Engineering |
+| **Khushi Jangra** (Team Leader) | S24CSEU0666 | S24CSEU0666@bennett.edu.in | B.Tech Computer Science & Engineering |
+| **Janwi Singh** | S24CSEU0682 | S24CSEU0682@bennett.edu.in | B.Tech Computer Science & Engineering |
+| **Jaismeen Kaur** | S24CSEU0674 | S24CSEU0674@bennett.edu.in | B.Tech Computer Science & Engineering |
+| **Kangna Bansal** | S24CSEU0668 | S24CSEU0668@bennett.edu.in | B.Tech Computer Science & Engineering |
+| **Akharsh Tyagi** | S24CSEU1023 | S24CSEU1023@bennett.edu.in | B.Tech Computer Science & Engineering |
 
 ---
 

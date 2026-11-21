@@ -293,14 +293,23 @@ if __name__ == "__main__":
     base = r"c:\Users\Asus\OneDrive\Desktop\prompt\Bug-Explanation-and-Fix-Assistant\docs"
     m2_md = os.path.join(base, "milestone_2_report.md")
     
-    # Check if primary target is locked
+    # Check if primary targets are locked
     m2_pdf = os.path.join(base, "milestone_2_report.pdf")
+    is_m2_locked = False
     try:
         with open(m2_pdf, "a") as f:
             pass
     except PermissionError:
+        is_m2_locked = True
+
+    if is_m2_locked:
         m2_pdf = os.path.join(base, "milestone_2_report_submission.pdf")
-        print(f"Primary milestone_2_report.pdf is locked; rendering to {m2_pdf}")
+        try:
+            with open(m2_pdf, "a") as f:
+                pass
+        except PermissionError:
+            m2_pdf = os.path.join(base, "Deadlock_Milestone2_Report.pdf")
+            print(f"Both primary milestone PDFs are open/locked; rendering to {m2_pdf}")
 
     md_to_pdf(m2_md, m2_pdf, "SCSE4041 Milestone 2 Documentation")
 
