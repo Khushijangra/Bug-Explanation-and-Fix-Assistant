@@ -19,9 +19,11 @@
 ### Team Roster & Credentials
 | Member Name | Enrollment Number | Institutional Email | Degree Program |
 | :--- | :--- | :--- | :--- |
-| **[Student 1 Full Name]** | [ENROLLMENT-001] | [student1@university.edu] | B.Tech Computer Science & Engineering |
-| **[Student 2 Full Name]** | [ENROLLMENT-002] | [student2@university.edu] | B.Tech Computer Science & Engineering |
-| **[Student 3 Full Name]** | [ENROLLMENT-003] | [student3@university.edu] | B.Tech Computer Science & Engineering |
+| **[Team Leader Name]** | S24CSEU0666 | [leader@university.edu] | B.Tech Computer Science & Engineering |
+| **[Member 2 Name]** | S24CSEU0682 | [member2@university.edu] | B.Tech Computer Science & Engineering |
+| **[Member 3 Name]** | S24CSEU0674 | [member3@university.edu] | B.Tech Computer Science & Engineering |
+| **[Member 4 Name]** | S24CSEU0668 | [member4@university.edu] | B.Tech Computer Science & Engineering |
+| **[Member 5 Name]** | S24CSEU1023 | [member5@university.edu] | B.Tech Computer Science & Engineering |
 
 ---
 
@@ -654,9 +656,11 @@ Current limitations include lack of a sandboxed execution runtime and snippet am
 
 | Member Name | Enrollment Number | Assigned Role | Tasks Completed in Milestone 2 | Documented Evidence | Contribution % |
 | :--- | :--- | :--- | :--- | :--- | :---: |
-| **[Student 1 Full Name]** | [ENROLLMENT-001] | Full-Stack Developer & Architect | Core Streamlit frontend (`app.py`), UI/UX styling, Response Formatter (`modules/response_formatter.py`), System Integration | Commit history, `app.py` implementation | **34.0%** |
-| **[Student 2 Full Name]** | [ENROLLMENT-002] | AI/ML & Prompt Engineer | Prompt Engineering iterations (V1, V2, V3, Final), Gemini API Integration, Bug Analyzer Module (`modules/bug_analyzer.py`), Prompt Comparison Dashboard | `prompts/` directory, `modules/prompt_manager.py` | **33.0%** |
-| **[Student 3 Full Name]** | [ENROLLMENT-003] | Software Tester & Technical Writer | Language Detection Engine (`modules/language_detector.py`), Test Suite Design (17 cases in `tests/test_application.py`), Test Data (`test-data/`), Milestone 2 Documentation & Demo Reel Script | `tests/`, `test-data/test_results.json`, `docs/` | **33.0%** |
+| **[Team Leader Name]** | S24CSEU0666 | Project Lead & Core AI System Architect | Overall Architecture, Core AI Bug Analyzer Engine (`modules/bug_analyzer.py`), Google Gemini 2.0 Flash API Integration, Dual-Mode Controller (`modules/config.py`) | Git commits, `modules/bug_analyzer.py`, `modules/config.py` | **28.0%** |
+| **[Member 2 Name]** | S24CSEU0682 | Prompt Engineering Specialist | Prompt Engineering iterations (V1 Zero-Shot, V2 Structured, V3 Optimized Few-Shot), Taxonomy Design, and Prompt Metadata | `prompts/` directory, `modules/prompt_manager.py` | **18.0%** |
+| **[Member 3 Name]** | S24CSEU0674 | Full-Stack Frontend UI/UX Developer | Streamlit Frontend (`app.py`), UI/UX Layout, 7-Section Result Dashboard (Sections A–G), and Prompt Comparison Interface | `app.py`, custom CSS styling | **18.0%** |
+| **[Member 4 Name]** | S24CSEU0668 | Language & Syntax Parsing Specialist | Heuristic Language Detector (`modules/language_detector.py`), RFC 8259 JSON Deserializer & Formatter (`modules/response_formatter.py`), and Isolated Python AST Syntax Validator | `modules/language_detector.py`, `modules/response_formatter.py` | **18.0%** |
+| **[Member 5 Name]** | S24CSEU1023 | Software QA & Documentation Specialist | 17-Case Automated Test Suite (`tests/test_application.py`), Test Data (`test-data/`), Empirical Execution Logging, and Milestone 2 Technical Documentation | `tests/`, `test-data/test_results.json`, `docs/` | **18.0%** |
 | **TOTAL** | | | | | **100.0%** |
 
 ---

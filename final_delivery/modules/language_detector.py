@@ -86,17 +86,21 @@ def detect_language(code: str, error_message: str = "") -> Tuple[str, float]:
     if not code or not code.strip():
         return ("Unknown", 0.0)
 
+    # Strip string literals so English words inside strings (e.g. "Hello from Rust")
+    # do not trigger false positive keyword matches for other languages.
+    code_clean = re.sub(r'(\"\"\"[\s\S]*?\"\"\"|\'\'\'[\s\S]*?\'\'\'|\".*?\"|\'.*?\')', ' "" ', code)
+
     raw_scores = {}
 
     for language, indicators in LANGUAGE_PATTERNS.items():
         score = 0.0
 
-        # Check keywords
+        # Check keywords against sanitized code (outside string literals)
         for keyword in indicators["keywords"]:
-            if keyword in code:
+            if keyword in code_clean:
                 score += 1.0
 
-        # Check regex patterns
+        # Check regex patterns against original code (for full syntax structures)
         for pattern in indicators["patterns"]:
             try:
                 if re.search(pattern, code, re.MULTILINE):

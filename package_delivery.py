@@ -68,10 +68,13 @@ for d in dirs_to_copy:
         print(f"  Copied directory: {d}/")
 
 # Copy PDFs to root of final_delivery as well for easy faculty access
-m2_pdf_src = os.path.join(BASE_DIR, "docs", "milestone_2_report.pdf")
+m2_pdf_src = os.path.join(BASE_DIR, "docs", "milestone_2_report_submission.pdf")
+if not os.path.exists(m2_pdf_src):
+    m2_pdf_src = os.path.join(BASE_DIR, "docs", "milestone_2_report.pdf")
 m2_pdf_dst = os.path.join(DELIVERY_DIR, "Milestone_2_Submission_Report.pdf")
 if os.path.exists(m2_pdf_src):
     shutil.copy2(m2_pdf_src, m2_pdf_dst)
+    print(f"  Copied Milestone 2 PDF from {os.path.basename(m2_pdf_src)}")
 
 tech_pdf_src = os.path.join(BASE_DIR, "docs", "technical_report.pdf")
 tech_pdf_dst = os.path.join(DELIVERY_DIR, "Technical_Report.pdf")

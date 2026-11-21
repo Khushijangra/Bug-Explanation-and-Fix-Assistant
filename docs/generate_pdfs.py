@@ -284,9 +284,6 @@ def md_to_pdf(input_md_path: str, output_pdf_path: str, doc_title: str):
         content = re.sub(r"`(.*?)`", r"<font face='Courier'>\1</font>", content)
         story.append(Paragraph(content, body_style))
 
-    if in_table:
-        flush_table()
-
     # Build document
     doc.build(story)
     print(f"Generated PDF: {output_pdf_path} ({os.path.getsize(output_pdf_path)} bytes)")
@@ -295,9 +292,25 @@ def md_to_pdf(input_md_path: str, output_pdf_path: str, doc_title: str):
 if __name__ == "__main__":
     base = r"c:\Users\Asus\OneDrive\Desktop\prompt\Bug-Explanation-and-Fix-Assistant\docs"
     m2_md = os.path.join(base, "milestone_2_report.md")
+    
+    # Check if primary target is locked
     m2_pdf = os.path.join(base, "milestone_2_report.pdf")
+    try:
+        with open(m2_pdf, "a") as f:
+            pass
+    except PermissionError:
+        m2_pdf = os.path.join(base, "milestone_2_report_submission.pdf")
+        print(f"Primary milestone_2_report.pdf is locked; rendering to {m2_pdf}")
+
     md_to_pdf(m2_md, m2_pdf, "SCSE4041 Milestone 2 Documentation")
 
     tech_md = os.path.join(base, "technical_report.md")
     tech_pdf = os.path.join(base, "technical_report.pdf")
+    try:
+        with open(tech_pdf, "a") as f:
+            pass
+    except PermissionError:
+        tech_pdf = os.path.join(base, "technical_report_submission.pdf")
+        print(f"Primary technical_report.pdf is locked; rendering to {tech_pdf}")
+
     md_to_pdf(tech_md, tech_pdf, "Technical Report: Bug Explanation and Fix Assistant")
