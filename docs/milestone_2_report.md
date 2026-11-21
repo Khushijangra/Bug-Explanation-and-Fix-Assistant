@@ -545,7 +545,16 @@ All 17 test cases were executed directly against the application framework using
   - *Simple Explanation:* "Your Python code is actually completely fine! The error message you pasted ('NullPointerException') comes from a Java program, not Python. Make sure you copied the correct error message from your terminal."
   - *Analogy:* "Bringing a bicycle repair manual to fix a flat tire on a submarine."
 
-## 4.3 Known Limitations
+## 4.3 Verified Application Screenshots
+
+The application was launched live on `http://localhost:8501` and genuine screenshots were captured from the active running instance:
+
+1. **Figure 4.1 — Bug Analyzer Main Dashboard (`screenshots/bug_analyzer.png`):** Demonstrates automatic language detection (Python, Confidence: 88%), multi-line code input, runtime error traceback (`ZeroDivisionError`), and Section A diagnostic output.
+2. **Figure 4.2 — Corrected Code & Pedagogical Walkthrough (`screenshots/corrected_code.png`):** Demonstrates Section B (Root Cause), Section C (Syntactically verified code fix with `# FIXED:` annotations), Section D (Pizza-sharing analogy), and Section E (3-column debugging guide: *What was wrong* -> *What was changed* -> *Why it works*).
+3. **Figure 4.3 — Multi-Version Prompt Comparison (`screenshots/prompt_comparison.png`):** Demonstrates empirical comparison of V1 (Zero-Shot), V2 (Structured Role-Based), and V3 (Optimized Final) side-by-side alongside the 9-dimension comparative evaluation matrix.
+4. **Figure 4.4 — Verified Repository & Package Structure (`screenshots/repository.png`):** Illustrates the clean project structure, versioned prompts, 17-case test suite, and generated deliverables.
+
+## 4.4 Known Limitations
 1. **Static Analysis Horizon:** Code is analyzed statically via language models without execution in an isolated sandbox. Runtime memory leaks or complex multi-threaded race conditions cannot be validated dynamically.
 2. **Short Snippet Language Ambiguity:** Tiny code fragments (e.g. `int x = 10;`) lacking language-specific library imports or headers cannot be distinguished unambiguously between C, C++, and Java without user manual selection.
 3. **Multi-File Context:** The current implementation analyzes single-file code inputs and does not resolve inter-module dependencies across extensive software repositories.
@@ -618,37 +627,60 @@ Bug-Explanation-and-Fix-Assistant/
 
 # SECTION 6 — SUPPORTING DOCUMENT: TECHNICAL REPORT
 
-*(The complete 2-page Standalone Technical Report is reproduced below as required)*
+*(The complete 2-page Standalone Technical Report is reproduced below matching docs/technical_report.md)*
 
 ## Technical Report: Bug Explanation and Fix Assistant
-**Academic Course:** SCSE4041 Mini Project (Milestone 2) | **Date:** November 2026
+**Course:** SCSE4041 Mini Project (Milestone 2) | **Team ID:** T-SCSE-C5-04 | **Date:** November 2026  
+**Team Roster:** S24CSEU0666 (Lead), S24CSEU0682, S24CSEU0674, S24CSEU0668, S24CSEU1023
 
-### 1. Executive Summary
-Debugging is widely recognized as one of the most formidable barriers faced by students and novice programmers. Traditional compilers and interpreters emit tersely formatted syntax diagnostics or raw execution call stacks that state what failed mechanically but fail to clarify the conceptual rationale or actionable remedies. The **Bug Explanation and Fix Assistant** is an AI-powered developer assistance web tool designed specifically for students and junior developers. The system accepts source code across 5 programming languages (Python, JavaScript, Java, C++, C) alongside error traces, categorizes defects, synthesizes complete patches with inline annotations, unpacks root causes using accessible analogies, and outlines step-by-step debugging walkthroughs.
+### A. Project Overview
+- **Problem Addressed:** Novice programmers struggle with cryptic compiler diagnostics and stack traces (`Segmentation fault`, `NullPointerException`, `unexpected EOF`) that report execution failures without explaining conceptual root causes or providing actionable fixes.
+- **Target Users:** Undergraduate computer science students and junior software developers.
+- **Purpose:** An AI-powered assistant that ingests multi-language source code and error messages, categorizes bugs via a 9-class taxonomy, provides verified code repairs, explains root causes with beginner analogies, offers step-by-step debugging walkthroughs, and compares prompt versions.
 
-### 2. System Architecture & Tech Stack
-- **Frontend Presentation:** Streamlit (v1.28+) providing reactive single-page layout, code editors, and metric cards.
-- **Language Detection Engine (`language_detector.py`):** Weighted lexical and syntactic heuristic analyzer combining keyword matching, regular expression syntax pattern evaluation, and error log pattern matching.
-- **Configuration Engine (`config.py`):** Central source of truth for mode detection (AI vs Demo) and credential validation.
-- **Prompt Lifecycle Management (`prompt_manager.py`):** Version-controlled template loader managing iterations (V1, V2, V3, and Final) with dynamic runtime variable interpolation.
-- **Response Parser & Normalizer (`response_formatter.py`):** Resilient dual-path deserializer supporting strict JSON schema validation with markdown fence extraction, accompanied by regex-based markdown section recovery.
-- **Core Orchestrator (`bug_analyzer.py`):** High-reliability orchestrator featuring dual operational modes: live LLM integration with Google Gemini (`gemini-2.0-flash`) and an offline, deterministic fallback engine covering all validation scenarios.
+### B. System Architecture
+The solution uses a decoupled 5-tier architecture:
+1. **Presentation Layer (`app.py`):** Reactive Streamlit UI with 4 views (Analyzer, Prompt Comparison, Prompt Viewer, About) and 8 one-click presets.
+2. **Configuration Engine (`modules/config.py`):** Central controller strictly enforcing `APP_MODE` (`demo` vs `ai`) and credential validation.
+3. **Language Detection Engine (`modules/language_detector.py`):** Weighted lexical/syntactic analyzer with string-literal sanitization covering Python, JS, Java, C++, and C.
+4. **Prompt Management Engine (`modules/prompt_manager.py`):** Versioned template loader for V1, V2, V3, and Final prompts.
+5. **Response Parser & Validator (`modules/response_formatter.py`):** Deserializer with RFC 8259 JSON validation, Markdown fallback, and isolated Python AST syntax checks (`ast.parse`).
+6. **Dual-Mode Orchestrator (`modules/bug_analyzer.py`):** Routes to Google Gemini 2.0 Flash in AI Mode or a 17-case deterministic offline engine in Demo Mode.
 
-### 3. Prompt Engineering Methodology
-Prompts were systematically evolved across three generations:
-- *Version 1 (Basic Zero-Shot):* Unconstrained 15-line prompt. Generated erratic formats with senior-level jargon.
-- *Version 2 (Structured Role-Based):* Added explicit role persona and 6 markdown headings. Improved tone, but text parsing remained brittle.
-- *Version 3 (Optimized Final):* Deployed named persona "BugFixBot", 9-class error taxonomy, strict JSON schema output, 3-part walkthrough schema, explicit confidence scoring, and guardrails for 5 edge conditions.
+### C. Tools and Technologies
+- **Frontend & Web Framework:** Streamlit (v1.58+) reactive web application.
+- **Runtime Environment:** Python 3.8+ (tested on Python 3.13).
+- **AI Model & Platform:** Google Gemini 2.0 Flash (`gemini-2.0-flash`) via Google AI Studio API (`temperature=0.3`, `max_output_tokens=4096`).
+- **Core Libraries:** `google-generativeai`, `python-dotenv`, `reportlab`, `pypdf`, native `ast` module for syntax parsing.
 
-### 4. Empirical Testing & Validation
-The system was validated against 17 automated test cases executed via `tests/test_application.py`:
-- 8 Normal programming defects across Python, JavaScript, Java, C++, and C.
-- 5 Edge conditions (empty code, missing error message, ambiguous multi-language code, long code, Unicode quotes).
-- 4 Invalid inputs (misleading cross-language error log, unsupported language, invalid input types, malformed JSON).
-All 17 tests passed (100.0% pass rate) with zero unhandled exceptions.
+### D. Prompt Engineering Progression
+- **V1 (Basic Zero-Shot, 291 chars):** Simple prompt asking for bug identity and fix. *Limitation:* Unstructured text output, no formal taxonomy, brittle parsing.
+- **V2 (Structured Role-Based, 1,566 chars):** Added expert debugging persona, beginner audience context, and markdown section headers. *Limitation:* Markdown parsing vulnerabilities, no strict confidence calibration.
+- **V3 / Final (Optimized Few-Shot Schema, 4,119 chars):** Enforces strict RFC 8259 JSON output, 9-class error taxonomy, inline `# FIXED:` code markers, 3-column debugging steps (*what was wrong* -> *what was changed* -> *why it works*), real-world analogies, and explicit confidence/limitations scoring.
 
-### 5. Limitations & Future Scope
-Current limitations include lack of a sandboxed execution runtime and snippet ambiguity for tiny 1-line fragments. Future enhancements will integrate Dockerized execution sandboxes and IDE extension plugins.
+### E. Testing Methodology
+- **Unit Testing:** 10 isolated tests verifying configuration, language detection across 5 languages, prompt loading, response parsing, and AST validation.
+- **Demo-Mode Integration Testing:** 17 end-to-end scenarios (8 Normal, 5 Edge, 4 Invalid) exercising the full analysis pipeline.
+- **Safe Semantic & Syntax Verification:** Python code patches validated via `ast.parse` and executed in isolated scopes to ensure bug resolution without secondary defects.
+- **Live AI Verification:** Dedicated test tier that probes Gemini API connectivity when credentials are configured or honestly logs `NOT RUN` in Demo Mode.
+
+### F. Actual Results
+- **Unit Test Suite:** 10 / 10 Passed (100.0%).
+- **Integration Test Suite:** 17 / 17 Passed (100.0%) across Normal (TC001–TC008), Edge (TC009–TC013), and Invalid (TC014–TC017) scenarios.
+- **Semantic Execution Tests:** 5 / 5 Passed (Python division by zero, Python syntax, Python off-by-one, Node.js JS TDZ, Node.js JS variable declaration).
+- **Operational Mode Distinction:** Demo Mode runs 100% offline with zero external network dependency; Live AI Mode requires `APP_MODE=ai` with `GEMINI_API_KEY`.
+- **Code Quality:** 100% of generated Python fixes passed AST syntax parsing.
+
+### G. System Limitations
+1. **Static Analysis Horizon:** Evaluates code statically; cannot dynamically verify multi-threaded race conditions or hardware memory faults without sandboxed compilation.
+2. **Language Ambiguity:** Short 1-line statements (e.g., `int x = 10;`) lacking headers share syntax across C, C++, and Java, requiring user manual selection.
+3. **Multi-File Context:** Single-file input scope does not resolve cross-module package hierarchies in enterprise repositories.
+4. **Live AI Quota:** Cloud inference depends on Gemini API key availability and rate quotas.
+
+### H. Future Improvements
+1. **Dockerized Execution Sandbox:** Containerized runtime (Docker/gVisor) to compile, link, and run student patches with exit code verification.
+2. **Conversational Multi-Turn State:** Enable interactive follow-up questions regarding specific line numbers.
+3. **IDE Plugin Distribution:** Package the core diagnostic engine as a lightweight VS Code extension.
 
 ---
 

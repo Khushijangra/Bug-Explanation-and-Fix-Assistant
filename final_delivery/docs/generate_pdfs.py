@@ -20,7 +20,7 @@ from reportlab.platypus import (
 )
 
 
-def md_to_pdf(input_md_path: str, output_pdf_path: str, doc_title: str):
+def md_to_pdf(input_md_path: str, output_pdf_path: str, doc_title: str, compact: bool = False):
     """Parse a Markdown file and render it as a styled PDF."""
     with open(input_md_path, "r", encoding="utf-8") as f:
         md_text = f.read()
@@ -28,10 +28,10 @@ def md_to_pdf(input_md_path: str, output_pdf_path: str, doc_title: str):
     doc = SimpleDocTemplate(
         output_pdf_path,
         pagesize=letter,
-        leftMargin=40,
-        rightMargin=40,
-        topMargin=40,
-        bottomMargin=40,
+        leftMargin=35 if compact else 40,
+        rightMargin=35 if compact else 40,
+        topMargin=28 if compact else 40,
+        bottomMargin=28 if compact else 40,
     )
 
     styles = getSampleStyleSheet()
@@ -41,10 +41,10 @@ def md_to_pdf(input_md_path: str, output_pdf_path: str, doc_title: str):
         "DocTitle",
         parent=styles["Title"],
         fontName="Helvetica-Bold",
-        fontSize=20,
-        leading=24,
+        fontSize=15 if compact else 20,
+        leading=18 if compact else 24,
         textColor=colors.HexColor("#312e81"),
-        spaceAfter=15,
+        spaceAfter=6 if compact else 15,
         alignment=0,
     )
 
@@ -52,11 +52,11 @@ def md_to_pdf(input_md_path: str, output_pdf_path: str, doc_title: str):
         "H1",
         parent=styles["Heading1"],
         fontName="Helvetica-Bold",
-        fontSize=14,
-        leading=18,
+        fontSize=12 if compact else 14,
+        leading=15 if compact else 18,
         textColor=colors.HexColor("#1e1b4b"),
-        spaceBefore=14,
-        spaceAfter=8,
+        spaceBefore=8 if compact else 14,
+        spaceAfter=4 if compact else 8,
         keepWithNext=True,
     )
 
@@ -64,11 +64,11 @@ def md_to_pdf(input_md_path: str, output_pdf_path: str, doc_title: str):
         "H2",
         parent=styles["Heading2"],
         fontName="Helvetica-Bold",
-        fontSize=12,
-        leading=16,
+        fontSize=10.5 if compact else 12,
+        leading=13 if compact else 16,
         textColor=colors.HexColor("#4338ca"),
-        spaceBefore=10,
-        spaceAfter=6,
+        spaceBefore=6 if compact else 10,
+        spaceAfter=3 if compact else 6,
         keepWithNext=True,
     )
 
@@ -76,11 +76,11 @@ def md_to_pdf(input_md_path: str, output_pdf_path: str, doc_title: str):
         "H3",
         parent=styles["Heading3"],
         fontName="Helvetica-Bold",
-        fontSize=10,
-        leading=14,
+        fontSize=9.5 if compact else 10,
+        leading=12 if compact else 14,
         textColor=colors.HexColor("#374151"),
-        spaceBefore=8,
-        spaceAfter=4,
+        spaceBefore=5 if compact else 8,
+        spaceAfter=2 if compact else 4,
         keepWithNext=True,
     )
 
@@ -88,18 +88,18 @@ def md_to_pdf(input_md_path: str, output_pdf_path: str, doc_title: str):
         "Body",
         parent=styles["Normal"],
         fontName="Helvetica",
-        fontSize=9,
-        leading=13,
+        fontSize=8.5 if compact else 9,
+        leading=11.5 if compact else 13,
         textColor=colors.HexColor("#1f2937"),
-        spaceAfter=6,
+        spaceAfter=3 if compact else 6,
     )
 
     bullet_style = ParagraphStyle(
         "Bullet",
         parent=body_style,
-        leftIndent=15,
-        firstLineIndent=-10,
-        spaceAfter=3,
+        leftIndent=12 if compact else 15,
+        firstLineIndent=-8 if compact else -10,
+        spaceAfter=2 if compact else 3,
     )
 
     code_style = ParagraphStyle(
@@ -313,4 +313,4 @@ if __name__ == "__main__":
         tech_pdf = os.path.join(base, "technical_report_submission.pdf")
         print(f"Primary technical_report.pdf is locked; rendering to {tech_pdf}")
 
-    md_to_pdf(tech_md, tech_pdf, "Technical Report: Bug Explanation and Fix Assistant")
+    md_to_pdf(tech_md, tech_pdf, "Technical Report: Bug Explanation and Fix Assistant", compact=True)

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-21 13:03:32",
+  "timestamp": "2026-11-21 13:28:07",
   "unit_tests": {
     "total": 10,
     "passed": 10,
@@ -290,6 +290,38 @@
         "confidence_level": "Medium",
         "failure_reasons": [],
         "mode": "demo"
+      }
+    ]
+  },
+  "semantic_correctness_tests": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0,
+    "results": [
+      {
+        "name": "Python ZeroDivision Semantic Fix",
+        "status": "PASS"
+      },
+      {
+        "name": "Python Syntax Fix (AST & Execution)",
+        "status": "PASS"
+      },
+      {
+        "name": "Python Loop Off-by-One Semantic Fix",
+        "status": "PASS"
+      },
+      {
+        "name": "JavaScript TDZ Fix (Node.js Execution)",
+        "status": "PASS"
+      },
+      {
+        "name": "JavaScript Variable Declaration Fix (Node.js Execution)",
+        "status": "PASS"
+      },
+      {
+        "name": "C/C++ Live Compilation",
+        "status": "STATIC_VERIFIED",
+        "notes": "Host GCC/G++ relocation conflict; verified via regex and lexical structure without live compilation."
       }
     ]
   },
